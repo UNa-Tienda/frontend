@@ -5,7 +5,7 @@
       <router-link :to="{ name: 'register' }">Registrarse</router-link>
     </div>
     <div>
-      <router-link :to="{ name: 'login' }">Iniciar Sesión</router-link>
+      <router-link :to="{ name: 'iniciar_sesion' }">Iniciar Sesión</router-link>
     </div>
 
     <div class="row">
