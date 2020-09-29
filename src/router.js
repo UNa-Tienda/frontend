@@ -1,6 +1,5 @@
 import Vue from "vue";
 import Home from "./views/Home.vue";
-import About from "./views/About.vue";
 import Iniciar_sesion from "./views/Iniciar_sesion.vue";
 import VueRouter from 'vue-router'
     
@@ -11,12 +10,6 @@ const routes = [
       path: "/",
       name: "home",
       component: Home
-    },
-    {
-      path: "/about",
-      name: "about",
-      component: About    
-
     },
     {
         path: "/iniciar_sesion",
