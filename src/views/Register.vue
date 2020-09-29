@@ -1,107 +1,99 @@
 <template>
-  <div class="container-fluid">
-    <b-img src="../assets/logo.png" alt="logo"></b-img>
+  <div class="container">
     <div class="row">
-      <div class="col-12 col-sm-10 col-md-8 offset-sm-1 offset-md-2">
-        <div id="signUp" class="mt-5">
-          <form
-            class="border border-primary rounded form-inline"
-            @submit="signUp"
-          >
-            <h2 class="col-12 text-center text-primary mt-3 mb-5">Registro</h2>
+      <div class="register col-12">
+        <br />
+        <img src="../assets/logo.png" alt="Logo" />
+        <div
+          id="signUp"
+          class="signUp col-xs-12 col-sm-10 col-md-8 col-lg-6 mt-0"
+        >
+          <form @submit="signUp" class="col-12 border border-success rounded">
+            <h2 class="col-12 text-center text-success mt-3 mb-3">Registro</h2>
 
             <div class="form-group col-12">
-              <label class="custom-label col-md-3" for="names">Nombres</label>
+              <label class="custom-label" for="names">Nombre y Apellido</label>
               <input
                 id="names"
-                class="form-control col-12 col-sm-10 col-md-7 offset-sm-1"
+                class="form-control-sm border-success col-12"
                 type="text"
-                placeholder="Nombres"
+                placeholder="Ingrese Nombre y Apellido"
                 v-model="names"
                 required
               />
             </div>
 
             <div class="form-group col-12">
-              <label class="custom-label col-md-3 display" for="surnames"
-                >Apellidos</label
-              >
-              <input
-                id="surnames"
-                class="form-control col-12 col-sm-10 col-md-7 offset-sm-1"
-                type="text"
-                placeholder="Apellidos"
-                v-model="surnames"
-                required
-              />
-            </div>
-
-            <div class="form-group col-12">
-              <label class="custom-label col-md-3" for="username"
+              <label class="custom-label" for="username"
                 >Nombre de Usuario</label
               >
               <input
                 id="username"
-                class="form-control col-12 col-sm-10 col-md-7 offset-sm-1"
+                class="form-control-sm border-success col-12"
                 type="text"
-                placeholder="Nombre de Usuario"
+                placeholder="Ingrese su Nombre de Usuario"
                 v-model="username"
                 required
               />
             </div>
 
             <div class="form-group col-12">
-              <label class="custom-label col-md-3 display" for="password"
+              <label class="custom-label" for="email">Email</label>
+              <input
+                id="email"
+                class="form-control-sm border-success col-12"
+                type="email"
+                placeholder="Ingrese su Email"
+                v-model="email"
+                required
+              />
+            </div>
+            <div class="form-group col-12">
+              <label class="custom-label" for="address">Dirección</label>
+              <input
+                id="address"
+                class="form-control-sm border-success col-12"
+                type="text"
+                placeholder="Ingrese su dirección"
+                v-model="address"
+                required
+              />
+            </div>
+
+            <div class="form-group col-12">
+              <label class="custom-label" for="password"
                 >Contrase&ntilde;a</label
               >
               <input
                 id="password"
-                class="form-control col-12 col-sm-10 col-md-7 offset-sm-1"
+                class="form-control-sm border-success col-12"
                 type="password"
-                placeholder="Contraseña"
+                placeholder="Ingrese su Contraseña"
                 v-model="password"
                 required
               />
             </div>
 
             <div class="form-group col-12">
-              <label class="custom-label col-md-3 display" for="cPassword"
+              <label class="custom-label" for="password2"
                 >Confirmar Contrase&ntilde;a</label
               >
               <input
-                id="cPassword"
-                class="form-control col-12 col-sm-10 col-md-7 offset-sm-1"
+                id="password2"
+                class="form-control-sm border-success col-12"
                 type="password"
                 placeholder="Confirmar Contraseña"
-                v-model="cPassword"
+                v-model="password2"
                 required
-                :class="{
-                  'is-invalid': cPassword !== '' && cPassword !== password,
-                  'is-valid': cPassword !== '' && cPassword === password,
-                }"
               />
             </div>
 
-            <div class="form-group col-12">
-              <label class="custom-label col-md-3 display" for="rol"
-                >Tipo de Usuario</label
-              >
-              <select
-                id="rol"
-                class="form-control col-12 col-sm-10 col-md-7 offset-sm-1"
-                v-model="role"
-                required
-              >
-                <option value="" disabled selected
-                  >-- Seleccione un Rol --</option
-                >
-                <option v-for="role in roles" :key="role.id" :value="role.id">{{
-                  role.roleName
-                }}</option>
-              </select>
+            <div class="col-12">
+              <button class="btn btn-success col-12" type="submit">
+                Registrarse
+              </button>
             </div>
-
-            <div class="col-12 col-sm-6 col-md-5 offset-md-2 text-center mb-3">
+            <div class="col-12">
               <span class="text-primary">
                 <small>
                   <router-link :to="{ name: 'login' }"
@@ -109,15 +101,6 @@
                   >
                 </small>
               </span>
-            </div>
-
-            <div class="col-12 col-sm-5 col-md-4 mb-3">
-              <button
-                class="col-sm-10 col-md-10 offset-sm-1 offset-md-2 btn btn-primary"
-                type="submit"
-              >
-                Registrar
-              </button>
             </div>
           </form>
         </div>
@@ -130,4 +113,17 @@
 export default {};
 </script>
 
-<style></style>
+<style>
+.register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+img {
+  height: 100px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
