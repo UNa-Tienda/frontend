@@ -1,18 +1,23 @@
 <template>
-    <div class="home">
-        <img alt="Vue logo" src="../assets/logo.png">
-        <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container-fluid mt-2">
+    <h1>Pagina principal</h1>
+    <div>
+      <router-link :to="{ name: 'register' }">Registrarse</router-link>
     </div>
-</template> 
-    
+    <div>
+      <router-link :to="{ name: 'iniciar_sesion' }">Iniciar Sesión</router-link>
+    </div>
 
-<script>
-import HelloWorld from '@/components/HelloWorld.vue'
+    <div class="row">
+      <router-view></router-view>
+    </div>
+  </div>
+</template>
 
-export default {
-  name: 'home',
-  components: {
-    HelloWorld
-  }
+<script></script>
+
+<style>
+h1 {
+  text-align: center;
 }
-</script>
+</style>
