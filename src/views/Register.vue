@@ -3,13 +3,13 @@
     <div class="row">
       <div class="col-12">
         <br />
-        <img src="../assets/logo.png" alt="Logo" />
+        <img class="logoregister" src="../assets/logo.png" alt="Logo" />
         <div id="signUp" class="signUp">
           <form
             @submit="signUp"
-            class="register col-xs-12 col-sm-8 col-md-6 col-lg-4 border border-light rounded form-inline"
+            class="register col-xs-12 col-sm-8 col-md-6 col-lg-4 border border-primary rounded-lg"
           >
-            <h2 class="col-12 text-center text-light mt-3 mb-3">Registro</h2>
+            <h2 class="col-12 text-center text-primary mt-3 mb-3">Registro</h2>
 
             <div class="form-group col-12 mb-1">
               <label class="custom-label" for="names">Nombre y Apellido</label>
@@ -17,7 +17,7 @@
                 id="names"
                 class="form-control col-12"
                 type="text"
-                placeholder="Ingrese Nombre y Apellido"
+                placeholder="Ej: Pablo Neruda"
                 v-model="names"
                 required
               />
@@ -31,7 +31,7 @@
                 id="username"
                 class="form-control col-12"
                 type="text"
-                placeholder="Ingrese su Nombre de Usuario"
+                placeholder="Ingrese Nombre de Usuario"
                 v-model="username"
                 required
               />
@@ -43,7 +43,7 @@
                 id="email"
                 class="form-control col-12"
                 type="email"
-                placeholder="Ingrese su Email"
+                placeholder="Ej: user@gmail.com"
                 v-model="email"
                 required
               />
@@ -89,14 +89,14 @@
             </div>
 
             <div class="col-12">
-              <button class="btn btn-warning col-12" type="submit">
+              <button class="btn btn-primary col-12 mb-2" type="submit">
                 Registrarse
               </button>
             </div>
-            <div class="col-12">
+            <div class="col-12 mb-2">
               <span class="linklogin">
                 <small>
-                  <router-link :to="{ name: 'login' }"
+                  <router-link :to="{ name: 'iniciar_sesion' }"
                     >&iquest;Ya tienes cuenta? Inicia Sesi&oacute;n</router-link
                   >
                 </small>
@@ -115,7 +115,7 @@ export default {};
 
 <style>
 .container-register {
-  background: #003e59;
+  background: #012433;
 }
 .signUp {
   display: flex;
@@ -124,10 +124,10 @@ export default {};
   min-height: 100vh;
 }
 .register {
-  background: #0098da;
-  color: white;
+  background: white;
+  color: #054c6b;
 }
-img {
+.logoregister {
   height: 80px;
   display: block;
   margin-left: auto;
