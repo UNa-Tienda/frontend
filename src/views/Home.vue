@@ -8,6 +8,9 @@
     <div>
       <router-link :to="{ name: 'iniciar_sesion' }">Iniciar Sesión</router-link>
     </div>
+    <div>
+      <router-link :to="{ name: 'profile' }">Plantilla perfil</router-link>
+    </div>
 
     <div class="row">
       <router-view></router-view>
