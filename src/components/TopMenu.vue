@@ -29,7 +29,7 @@
 
       <b-col sm="6" offset="3">
         <div class="navbar">
-          <router-link :to="{ name: 'register' }" class="menufont">Inicio</router-link>
+          <router-link :to="{ name: 'Inicio' }" class="menufont">Inicio</router-link>
 
           <!-- dropdowns de categorias -->
           <b-dropdown text="Categorias" variant="primary">
@@ -39,9 +39,9 @@
             <b-dropdown-item href="#">Alimentos</b-dropdown-item>
           </b-dropdown>
 
-          <router-link :to="{ name: 'register' }" class="menufont">Mis productos</router-link>
-          <router-link :to="{ name: 'register' }" class="menufont">Historial</router-link>
-          <router-link :to="{ name: 'register' }" class="menufont">Ayuda</router-link>
+          <router-link :to="{ name: 'produtcos' }" class="menufont">Mis productos</router-link>
+          <router-link :to="{ name: 'historial' }" class="menufont">Historial</router-link>
+          <router-link :to="{ name: 'ayuda' }" class="menufont">Ayuda</router-link>
 
         </div>
 
@@ -54,7 +54,7 @@
       </b-col>
 
       <b-col sm="1" align-self="center">
-        <router-link :to="{ name: 'register' }" class="menufont">Ingresar</router-link>
+        <router-link :to="{ name: 'iniciar_sesion' }" class="menufont">Ingresar</router-link>
       </b-col>
 
     </b-row>
