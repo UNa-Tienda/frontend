@@ -4,12 +4,12 @@
     <!-- Primera fila de items -->
     <b-row>
 
-      <b-col sm="3">
-        <img src="../assets/logo.png" style="width: 15vw; padding-top: 10px" >
+      <b-col sm="2" offset="1" align-self="center" class="col-xs-12">
+        <img src="../assets/logo.png" style="width: 10vw;">
       </b-col>
 
-      <b-col sm="8">
-        <b-input-group class="sm" style="padding-top: 20px;">
+      <b-col sm="7" align-self="center" xs="12">
+        <b-input-group class="sm">
           <b-form-input placeholder="Buscar productos..."></b-form-input>
           <b-input-group-append>
             <b-button variant="">Buscar</b-button>
@@ -17,9 +17,9 @@
         </b-input-group>
       </b-col>
 
-      <b-col sm="1">
+      <b-col sm="1" align-self="center">
         <div>
-          <router-link :to="{ name: 'register' }"><img src="../assets/Shopping_cart.png" style="width: 5vw; padding-top: 10px" ></router-link>
+          <router-link :to="{ name: 'Shopping_cart' }"><img src="../assets/Shopping_cart.png" style="width: 3vw;" ></router-link>
         </div>
       </b-col>
     </b-row>
@@ -27,28 +27,34 @@
     <!-- Segunda fila de items -->
     <b-row>
 
-      <b-col sm="6" offset="1">
+      <b-col sm="6" offset="3">
+        <div class="navbar">
+          <router-link :to="{ name: 'register' }" class="menufont">Inicio</router-link>
 
-        <b-navbar class="navbar">
-          <b-navbar-nav>
-            <b-nav-item>Inicio</b-nav-item>
+          <!-- dropdowns de categorias -->
+          <b-dropdown text="Categorias" variant="primary">
+            <b-dropdown-item href="#">Tecnologia</b-dropdown-item>
+            <b-dropdown-item href="#">Electrodomesticos</b-dropdown-item>
+            <b-dropdown-item href="#">Juguetes</b-dropdown-item>
+            <b-dropdown-item href="#">Alimentos</b-dropdown-item>
+          </b-dropdown>
 
-            <!-- dropdowns de categorias -->
-            <b-nav-item-dropdown text="Categorias" right>
-              <b-dropdown-item href="#">Tecnologia</b-dropdown-item>
-              <b-dropdown-item href="#">Electrodomesticos</b-dropdown-item>
-              <b-dropdown-item href="#">Juguetes</b-dropdown-item>
-              <b-dropdown-item href="#">Alimentos</b-dropdown-item>
-            </b-nav-item-dropdown>
+          <router-link :to="{ name: 'register' }" class="menufont">Mis productos</router-link>
+          <router-link :to="{ name: 'register' }" class="menufont">Historial</router-link>
+          <router-link :to="{ name: 'register' }" class="menufont">Ayuda</router-link>
 
-            <b-nav-item href="#">Mis productos</b-nav-item>
-            <b-nav-item href="#">Historial</b-nav-item>
-            <b-nav-item href="#">Ayuda</b-nav-item>
-          </b-navbar-nav>
-        </b-navbar>
+        </div>
 
       </b-col>
-      <b-col sm="2">
+
+      <b-col sm="1" offset="1" align-self="center">
+        <div>
+          <router-link :to="{ name: 'register' }" class="menufont">Registarse</router-link>
+        </div>
+      </b-col>
+
+      <b-col sm="1" align-self="center">
+        <router-link :to="{ name: 'register' }" class="menufont">Ingresar</router-link>
       </b-col>
 
     </b-row>
@@ -67,17 +73,20 @@ export default {
 .navbar {
   background: #43B0DF;
   top: 0;
-  width: 100%;
   align-self: center;
 }
-.navbar a {
+.menufont {
   color: azure;
   height: auto;
+  padding-left: 5px;
+  padding-left: 5px;
 }
+
 .menu {
   background: #43B0DF;
-  margin-left: 0px;
-  margin-right: 0px;
+  margin-left: 0;
+  margin-right: 0;
   max-width: inherit;
+  width: border-box;
 }
 </style>
