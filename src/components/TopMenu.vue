@@ -49,12 +49,12 @@
 
       <b-col sm="1" offset="1" align-self="center">
         <div>
-          <router-link :to="{ name: 'register' }" class="menufont">Registarse</router-link>
+          <router-link :to="{ name: 'register' }" class="menufont" style="border: 1px solid #2c3e50; padding: 11px; border-radius: 16px; background-color: #2c3e50">Registarse</router-link>
         </div>
       </b-col>
 
       <b-col sm="1" align-self="center">
-        <router-link :to="{ name: 'iniciar_sesion' }" class="menufont">Ingresar</router-link>
+        <router-link :to="{ name: 'iniciar_sesion' }" class="menufont" style="border: 1px solid #2c3e50; padding: 11px; border-radius: 16px; background-color: #2c3e50">Ingresar</router-link>
       </b-col>
 
     </b-row>
@@ -71,7 +71,6 @@ export default {
 
 <style scoped>
 .navbar {
-  background: #43B0DF;
   top: 0;
   align-self: center;
 }
@@ -83,7 +82,7 @@ export default {
 }
 
 .menu {
-  background: #43B0DF;
+  background: #012433;
   margin-left: 0;
   margin-right: 0;
   max-width: inherit;
