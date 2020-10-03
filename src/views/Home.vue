@@ -3,56 +3,87 @@
   <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:100px">
         
         <div id="app">
+          <h1 style="color:DodgerBlue">Categorias</h1>
             <div class="w3-row-padding w3-padding-16 w3-center" >
-                <div class="w3-quarter">
-                  <img src="../assets/lobo.jpg" alt="lobo" style="width:200px;height: 200px;" id="category1">
-                  <h3>The Perfect Sandwich, A Real NYC Classic</h3>
-                  <p>Just some random text, lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+                <div class="w3-quarter" id="prueba">
+                  <img class="zoom" src="../assets/bike.png" style="cursor:pointer" onclick="document.location='http://localhost:8080/#'"   width="200" height="200" id="category1">
+                  <h3>Deportes</h3>
+                  <p>No puedes poner un límite a nada</p>
                 </div>
                 <div class="w3-quarter">
-                  <img src="../assets/zorro.png" alt="zorro" style="width:200px;height: 200px;" id="category2">
-                  <h3>Let Me Tell You About This Steak</h3>
-                  <p>Once again, some random text to lorem lorem lorem lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+                  <img class="zoom" src="../assets/nail.png" style="cursor:pointer" onclick="document.location='http://localhost:8080/#'"  width="200" height="200"  id="category2">
+                  <h3>Belleza</h3>
+                  <p>Deja que la belleza de lo que amas se convierta en lo que hagas</p>
                 </div>
                 <div class="w3-quarter">
-                  <img src="../assets/hongo.png" alt="hongo" style="width:200px;height: 200px;" id="category3">
-                  <h3>Cherries, interrupted</h3>
-                  <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
-                  <p>What else?</p>
+                  <img class="zoom" src="../assets/radio1.png" style="cursor:pointer" onclick="document.location='http://localhost:8080/#'" width="200" height="200" id="category3">
+                  <h3>Electrodomesticos</h3>
+                  <p>Lo que siempre has querido, al alcance de tu mano</p>
                 </div>
                 <div class="w3-quarter">
-                  <img src="../assets/pez.jpg" alt="Pez" style="width:200px;height: 200px;" id="category4">
-                  <h3>Once Again, Robust Wine and Vegetable Pasta</h3>
-                  <p>Lorem ipsum text praesent tincidunt ipsum lipsum.</p>
+                  <img class="zoom" src="../assets/auri.png" style="cursor:pointer" onclick="document.location='http://localhost:8080/#'"  width="200" height="200" id="category4">
+                  <h3>Accesorios</h3>
+                  <p>Si no esta aqui lo que buscas es porque no existe</p>
                 </div>
               </div>
-              <div class="w3-center w3-padding-32">
-                <div class="w3-bar">
-                  <a href="#" class="w3-bar-item w3-button w3-hover-black">«</a>
-                  <a href="#" class="w3-bar-item w3-black w3-button">1</a>
-                  <a href="#" class="w3-bar-item w3-button w3-hover-black">2</a>
-                  <a href="#" class="w3-bar-item w3-button w3-hover-black">3</a>
-                  <a href="#" class="w3-bar-item w3-button w3-hover-black">4</a>
-                  <a href="#" class="w3-bar-item w3-button w3-hover-black">»</a>
-                </div>
-              </div>
+            </div>  
               <footer class="w3-row-padding w3-padding-32">
-                <div class="w3">
-                  <h3>Contacto</h3>
-                  <p>Praesent tincidunt sed tellus ut rutrum. Sed vitae justo condimentum, porta lectus vitae, ultricies congue gravida diam non fringilla.</p>
-                </div>
-              </footer>        
-            </div>
-  </div>          
+    <div class="w3-third">
+      <h3>Contactanos</h3>
+      <div><a href="/about/about_team.htm">Acerca de nosotros</a>
+      </div>
+      <div><a href="/about/about_team.htm">Ubicacion</a>
+      </div>
+      <div><a href="/about/about_team.htm">Redes sociales</a>
+      </div>
+    </div>
+  
+    <div class="w3-third">
+      <h3>Seguridad</h3>
+          <img src="../assets/escudo1.png" class="w3-left w3-margin-center" style="width:100px">
+          <h2>Haga de tu misión, que la seguridad sea una condición</h2>
+          
+    </div>
+
+    <div class="w3-third w3-serif">
+      <h3>Confianza</h3>
+          <img src="../assets/love.png" class="w3-left w3-margin-center" style="width:100px">
+          <h2>Estamos para ti en todo momento</h2>
+          
+    </div>
+  </footer>       
+</div>         
 </template>
 
 <script>
-
-</script>
+  
+  export default {
+    data: () => ({
+      
+    }),
+    mounted() {
+      let recaptchaScript = document.createElement('script')
+      recaptchaScript.setAttribute('src', 'https://cdn.jsdelivr.net/npm/vue/dist/vue.js')
+      document.head.appendChild(recaptchaScript)
+    },
+    methods: {
+    Zooming: function () {
+    
+    }
+  }
+  }
+</script>>
 
 <style>
+.zoom{
+  width: 200,height=200
+}
+.zoom:hover {
+  transform: scale(1.5); 
+}
 @import url(https://www.w3schools.com/w3css/4/w3.css);
 h1 {
   text-align: center;
 }
+
 </style>
