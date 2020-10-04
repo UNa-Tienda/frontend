@@ -6,7 +6,7 @@
                 <img class="logo " src="../assets/logo.png" alt="Logo" />
             </div>
         </div>
-        <div class="container containerInterno border border-primary rounded-lg mt-5">
+        <div class="container mt-5">
             <b-row class="mt-5">
                 <b-col cols="5">
                     <img class="fotoperfil  col-xs-12 col-sm-12 col-md-10 col-lg-10 " src="../assets/perfil.png" alt="Perfil" />
@@ -63,7 +63,7 @@
 
 <style>
 .containerExterno {
-  background: #012433;
+  background: #ffffff;
   min-height: 100vh;
   
 }
