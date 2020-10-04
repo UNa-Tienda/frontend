@@ -2,8 +2,9 @@
   <div id="app" style="margin-top: 0px;">
     <div id="topMenu_div" style="position: sticky;">
       <TopMenu/>
-      <router-view />
     </div>
+
+    <router-view />
 
   </div>
 </template>
