@@ -1,14 +1,14 @@
 <template>
   <!-- Contenedor para el menu -->
-  <b-container class="menu">
+  <b-container class="menu" fluid="true">
     <!-- Primera fila de items -->
-    <b-row>
+    <b-row align-content="">
 
-      <b-col sm="2" offset="1" align-self="center" class="col-xs-12">
-        <img src="../assets/logo.png" style="width: 10vw;">
+      <b-col class="col-12 col-sm-2 col-lg-2" align-self="center">
+        <img src="../assets/logo.png" style="width: 100%;padding: 10px">
       </b-col>
-
-      <b-col sm="7" align-self="center" xs="12">
+      
+      <b-col class="col-8 col-sm-7" align-self="center">
         <b-input-group class="sm">
           <b-form-input placeholder="Buscar productos..."></b-form-input>
           <b-input-group-append>
@@ -17,48 +17,59 @@
         </b-input-group>
       </b-col>
 
-      <b-col sm="1" align-self="center">
+      <b-col class="col-2 col-sm-1" align-self="center">
         <div>
-          <router-link :to="{ name: 'Shopping_cart' }"><img src="../assets/Shopping_cart.png" style="width: 3vw;" ></router-link>
+          <router-link :to="{ name: 'Shopping_cart' }"><img src="../assets/Shopping_cart.png"
+                                                            style="width: 100%;max-width: 80px"></router-link>
         </div>
       </b-col>
-    </b-row>
+
 
     <!-- Segunda fila de items -->
-    <b-row>
 
-      <b-col sm="6" offset="3">
-        <div class="navbar">
-          <router-link :to="{ name: 'Inicio' }" class="menufont">Inicio</router-link>
 
-          <!-- dropdowns de categorias -->
-          <b-dropdown text="Categorias" variant="primary">
-            <b-dropdown-item href="#">Tecnologia</b-dropdown-item>
-            <b-dropdown-item href="#">Electrodomesticos</b-dropdown-item>
-            <b-dropdown-item href="#">Juguetes</b-dropdown-item>
-            <b-dropdown-item href="#">Alimentos</b-dropdown-item>
-          </b-dropdown>
+      <b-col class="col-1 col-lg-12">
 
-          <router-link :to="{ name: 'produtcos' }" class="menufont">Mis productos</router-link>
-          <router-link :to="{ name: 'historial' }" class="menufont">Historial</router-link>
-          <router-link :to="{ name: 'ayuda' }" class="menufont">Ayuda</router-link>
+        <b-navbar toggleable="lg" class="navbar">
 
-        </div>
+          <b-navbar-toggle target="nav-collapse" style="background-color: azure;"></b-navbar-toggle>
 
-      </b-col>
+          <b-collapse id="nav-collapse" is-nav class="test">
+            <b-navbar-nav>
+              <router-link :to="{ name: 'Inicio' }" class="menufont">Inicio</router-link>
 
-      <b-col sm="1" offset="1" align-self="center">
-        <div>
-          <router-link :to="{ name: 'register' }" class="menufont" style="border: 1px solid #2c3e50; padding: 11px; border-radius: 16px; background-color: #2c3e50">Registarse</router-link>
-        </div>
-      </b-col>
+              <b-nav-item-dropdown text="Categorias" right>
+                <b-dropdown-item href="#">Tecnologia</b-dropdown-item>
+                <b-dropdown-item href="#">Alimentos</b-dropdown-item>
+                <b-dropdown-item href="#">Muebles</b-dropdown-item>
+                <b-dropdown-item href="#">Otros</b-dropdown-item>
+              </b-nav-item-dropdown>
 
-      <b-col sm="1" align-self="center">
-        <router-link :to="{ name: 'iniciar_sesion' }" class="menufont" style="border: 1px solid #2c3e50; padding: 11px; border-radius: 16px; background-color: #2c3e50">Ingresar</router-link>
+              <router-link :to="{ name: 'produtcos' }" class="menufont">Mis productos</router-link>
+              <router-link :to="{ name: 'historial' }" class="menufont">Historial</router-link>
+              <router-link :to="{ name: 'ayuda' }" class="menufont">Ayuda</router-link>
+            </b-navbar-nav>
+
+            <b-navbar-nav>
+            <router-link :to="{ name: 'register' }" class="menufont"
+                         style="border: 1px solid #2c3e50; padding: 11px; border-radius: 16px; background-color: #2c3e50">
+              Registarse
+            </router-link>
+
+            <router-link :to="{ name: 'iniciar_sesion' }" class="menufont"
+                         style="border: 1px solid #2c3e50; padding: 11px; border-radius: 16px; background-color: #2c3e50">
+              Ingresar
+            </router-link>
+            </b-navbar-nav>
+
+          </b-collapse>
+        </b-navbar>
+
+
+
       </b-col>
 
     </b-row>
-
 
   </b-container>
 </template>
@@ -74,11 +85,10 @@ export default {
   top: 0;
   align-self: center;
 }
+
 .menufont {
-  color: azure;
-  height: auto;
-  padding-left: 5px;
-  padding-left: 5px;
+  color: azure !important;
+  width: 13vw;
 }
 
 .menu {
