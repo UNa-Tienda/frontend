@@ -69,7 +69,7 @@ export default {};
 }
 .forgot-password {
   margin-top: 20px;
-  margin-bottom: 90px;
+  margin-bottom: 130px;
   display: flex;
   align-items: center;
   justify-content: center;

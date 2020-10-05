@@ -102,7 +102,7 @@
               <span class="linklogin">
                 <small>
                   <router-link :to="{ name: 'iniciar_sesion' }"
-                    >&iquest;Ya tienes cuenta? Inicia Sesi&oacute;n</router-link
+                    >Ya tienes cuenta? Inicia Sesión</router-link
                   >
                 </small>
               </span>
