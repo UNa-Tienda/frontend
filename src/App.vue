@@ -1,18 +1,13 @@
 <template>
   <div id="app" style="margin-top: 0px;">
-
     <router-view />
-
   </div>
 </template>
 
-
 <script>
-
-
 export default {
-  name: 'App'
-}
+  name: "App",
+};
 </script>
 
 <style>
@@ -25,4 +20,3 @@ export default {
   margin-top: 60px;
 }
 </style>
-
