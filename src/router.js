@@ -3,6 +3,7 @@ import Home from "./views/Home.vue";
 import Iniciar_sesion from "./views/Iniciar_sesion.vue";
 import Router from "vue-router";
 import Register from "./views/Register";
+import ForgotPassword from "./views/ForgotPassword";
 import Profile from "./views/Profile.vue";
 
 Vue.use(Router);
@@ -27,10 +28,14 @@ export default new Router({
       component: Iniciar_sesion,
     },
     {
+      path: "/forgotPassword",
+      name: "forgotPassword",
+      component: ForgotPassword,
+    },
+    {
       path: "/profile",
       name: "profile",
       component: Profile,
-    }
+    },
   ],
 });
-
