@@ -3,13 +3,18 @@
     <div class="row">
       <div class="col-12">
         <br />
-        <img class="logoregister" src="../assets/logo.png" alt="Logo" />
-        <div id="signUp" class="signUp">
+        <div>
+          <router-link :to="{ name: 'home' }">
+            <img class="logoregister" src="../assets/logo.png" alt="Logo" />
+          </router-link>
+        </div>
+
+        <div class="signUp">
           <form
             @submit="signUp"
             class="register col-xs-12 col-sm-8 col-md-6 col-lg-4 border border-primary rounded-lg"
           >
-            <h2 class="col-12 text-center text-primary mt-3 mb-3">Registro</h2>
+            <h3 class="col-12 text-center text-primary mt-3 mb-3">Registro</h3>
 
             <div class="form-group col-12 mb-1">
               <label class="custom-label" for="names">Nombre y Apellido</label>
@@ -93,7 +98,7 @@
                 Registrarse
               </button>
             </div>
-            <div class="col-12 mb-2">
+            <div class="col-12 mb-2 text-center">
               <span class="linklogin">
                 <small>
                   <router-link :to="{ name: 'iniciar_sesion' }"
@@ -121,7 +126,7 @@ export default {};
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  margin-top: 20px;
 }
 .register {
   background: white;
