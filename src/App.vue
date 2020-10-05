@@ -9,6 +9,7 @@
   </div>
 </template>
 
+
 <script>
 import TopMenu from './components/TopMenu.vue'
 
@@ -30,3 +31,4 @@ export default {
   margin-top: 60px;
 }
 </style>
+

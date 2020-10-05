@@ -1,77 +1,110 @@
 <template>
-    <div>
-        <b-jumbotron text-variant="dark" border-variant="dark" header-level="5">
-            <template v-slot:header>
-                Login
-                <br><br>
-                <img alt="IS" src="../assets/IS.png"
-                contain    
-                height="150px"
-                width="150px"
-                > 
-                <br><br>
+  <div class="container-fluid container-register">
+    <div class="row">
+      <div class="col-12">
+        <br />
+        <router-link :to="{ name: 'home' }">
+          <img class="logoregister" src="../assets/logo.png" alt="Logo" />
+        </router-link>
+        <div id="login" class="login">
+          <b-form @submit="onSubmit" class="register col-xs-12 col-sm-8 col-md-6 col-lg-4 border border-primary rounded-lg">
+                <h2 class="col-12 text-center text-primary mt-3 mb-3">Login</h2>
+                <img class= "IS" src="../assets/IS.png" alt="ISL"/> 
+                
+                <b-form-group
+                    class="form-group col-12 mb-4"
+                    id="input-group-1"
+                    label="Email"
+                >
+                    <b-form-input
+                    id="input-1"
+                    v-model="form.email"
+                    type="email"
+                    required
+                    placeholder="usuario@email.com"
+                    ></b-form-input>
+                </b-form-group>
 
-            </template>
-
-            <template v-slot:lead>
-                <p style="text-align: left">Email</p>
-                <div>
-                    <b-form-input v-model="Email" placeholder="Ingrese su email"></b-form-input>
+                <b-form-group 
+                    class="form-group col-12 mb-4"
+                    id="input-group-2" 
+                    label="Contraseña" 
+                >
+                    <b-form-input
+                    id="input-2"
+                    v-model="form.contraseña"
+                    required
+                    placeholder="Ingrese su contraseña"
+                    ></b-form-input>
+                </b-form-group>
+                <div class="text-center" align-v="center"> 
+                    <b-button size="lg" type="sumbit" variant="primary">Iniciar Sesión</b-button>
                 </div>
-                <br><br>
-                <p style="text-align: left">Constraseña</p>
-                <div>
-                    <b-form-input v-model="Contraseña" placeholder="Ingrese su contraseña"></b-form-input>
+                <br>
+                <div class="text-center" align-v="center">
+                    <b-link to="about">¿Olvidaste tu contraseña?</b-link> 
                 </div>
-                <br><br>
-            </template>
-
-            <div> 
-                <b-button size="lg" type="sumbit" variant="primary">Iniciar Sesión</b-button>
-            </div>
-            
-            <br><br>
-            
-            <div>
-                <b-link to="about">¿Olvidaste tu contraseña?</b-link>  <!--to te lleva a esa referencia sin recargar la pagina, href la recarga-->
-            </div>
-
-            <br><br>
-
-            <div>
-                <b-button size="lg" to="registrarse" variant="secondary">Registrarse</b-button>
-            </div>
-
-
-        </b-jumbotron>
+                <br>
+                <div class="text-center" align-v="center">
+                    <b-button size="lg" to="register" variant="secondary">Registrarse</b-button>
+                </div>
+                <br>
+            </b-form>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
-
 
 <script>
   export default {
     data() {
       return {
-        Email: '',
-        Constraseña: ''
+        form: {
+          email: '',
+          contraseña: '',
+        },
+      }
+    },
+    methods: {
+      onSubmit(evt) {
+        evt.preventDefault()
+        alert(JSON.stringify(this.form))
       }
     }
   }
 </script>
 
-
 <style>
-        .jumbotron {
-            background-color: rgb(255, 255, 255)!important;
-            border-width: 3px!important;
-            margin-left: 250px;
-            margin-right: 250px;
-            
-            
-            
-            
-            
-        }
-        
-        
+.container-register {
+  background: #012433;
+  
+}
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 86.8vh;
+  
+}
+.register {
+  background: white;
+  color: #0b99d6;
+}
+.logoregister {
+  height: 80px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.IS {
+ display: block;
+ height: 150px;
+ width: 150px;
+ margin-left: auto;
+ margin-right: auto;
+
+}
 </style>
+
+

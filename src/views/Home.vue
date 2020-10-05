@@ -67,22 +67,22 @@
           <h1 style="color:DodgerBlue">Categorias</h1>
             <div class="w3-row-padding w3-padding-16 w3-center" >
                 <div class="w3-quarter" id="prueba">
-                  <img class="zoom" src="../assets/bike.png" style="cursor:pointer" onclick="document.location='http://localhost:8080/#'"   width="200" height="200" id="category1">
+                  <img alt="" class="zoom" src="../assets/bike.png" style="cursor:pointer" onclick="document.location='http://localhost:8080/#'"   width="200" height="200" id="category1">
                   <h3>Deportes</h3>
                   <p>No puedes poner un límite a nada</p>
                 </div>
                 <div class="w3-quarter">
-                  <img class="zoom" src="../assets/nail.png" style="cursor:pointer" onclick="document.location='http://localhost:8080/#'"  width="200" height="200"  id="category2">
+                  <img alt="" class="zoom" src="../assets/nail.png" style="cursor:pointer" onclick="document.location='http://localhost:8080/#'"  width="200" height="200"  id="category2">
                   <h3>Belleza</h3>
                   <p>Deja que la belleza de lo que amas se convierta en lo que hagas</p>
                 </div>
                 <div class="w3-quarter">
-                  <img class="zoom" src="../assets/radio1.png" style="cursor:pointer" onclick="document.location='http://localhost:8080/#'" width="200" height="200" id="category3">
+                  <img alt="" class="zoom" src="../assets/radio1.png" style="cursor:pointer" onclick="document.location='http://localhost:8080/#'" width="200" height="200" id="category3">
                   <h3>Electrodomesticos</h3>
                   <p>Lo que siempre has querido, al alcance de tu mano</p>
                 </div>
                 <div class="w3-quarter">
-                  <img class="zoom" src="../assets/auri.png" style="cursor:pointer" onclick="document.location='http://localhost:8080/#'"  width="200" height="200" id="category4">
+                  <img alt="" class="zoom" src="../assets/auri.png" style="cursor:pointer" onclick="document.location='http://localhost:8080/#'"  width="200" height="200" id="category4">
                   <h3>Accesorios</h3>
                   <p>Si no esta aqui lo que buscas es porque no existe</p>
                 </div>
@@ -101,20 +101,24 @@
   
     <div class="w3-third">
       <h3>Seguridad</h3>
-          <img src="../assets/escudo1.png" class="w3-left w3-margin-center" style="width:100px">
+          <img alt="" src="../assets/escudo1.png" class="w3-left w3-margin-center" style="width:100px">
           <h2>Haga de tu misión, que la seguridad sea una condición</h2>
           
+    </div>
+    <div>
+      <router-link :to="{ name: 'profile' }">Plantilla perfil</router-link>
     </div>
 
     <div class="w3-third w3-serif">
       <h3>Confianza</h3>
-          <img src="../assets/love.png" class="w3-left w3-margin-center" style="width:100px">
+          <img alt="" src="../assets/love.png" class="w3-left w3-margin-center" style="width:100px">
           <h2>Estamos para ti en todo momento</h2>
           
     </div>
   </footer>       
 </div>         
 </template>
+
 
 <script>
   
@@ -136,7 +140,8 @@
     }
   }
   }
-</script>>
+</script>
+
 
 <style>
 .zoom{
