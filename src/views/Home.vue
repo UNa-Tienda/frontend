@@ -1,4 +1,8 @@
 <template>
+<div>
+  <div id="topMenu_div" class="position-sticky" style="position: relative; z-index: 1000">
+    <TopMenu/>
+  </div>
 
   <div class="w3-main w3-content w3-padding" style="max-width:1200px;margin-top:50px">
 
@@ -116,18 +120,22 @@
           
     </div>
   </footer>       
-</div>         
+</div>
+</div>
 </template>
 
 
 <script>
-  
+import TopMenu from '../components/TopMenu.vue'
+
   export default {
     data() {
       return {
         slide: 0,
         sliding: null
       }
+    },components: {
+      TopMenu
     },
     mounted() {
       let recaptchaScript = document.createElement('script')

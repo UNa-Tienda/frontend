@@ -1,8 +1,5 @@
 <template>
   <div id="app" style="margin-top: 0px;">
-    <div id="topMenu_div" class="position-sticky">
-      <TopMenu/>
-    </div>
 
     <router-view />
 
@@ -11,13 +8,10 @@
 
 
 <script>
-import TopMenu from './components/TopMenu.vue'
+
 
 export default {
-  name: 'App',
-  components: {
-    TopMenu
-  }
+  name: 'App'
 }
 </script>
 
