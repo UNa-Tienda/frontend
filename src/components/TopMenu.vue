@@ -1,10 +1,10 @@
 <template>
   <!-- Contenedor para el menu -->
-  <b-container class="menu" >
+  <b-container class="menu">
 
     <b-row>
       <b-col class="col-12 col-sm-2" align-self="center">
-        <router-link :to="{ name: 'home' }"><img src="../assets/logo.png" style="width: 100%;padding-top: 10px"></router-link>
+        <router-link :to="{ name: 'home' }"><img src="../assets/logo.png" alt="Logo" style="width: 100%;padding-top: 10px"></router-link>
       </b-col>
 
     <b-col>
@@ -23,7 +23,7 @@
 
       <b-col class="col-1 col-sm-1" align-self="center">
         <div>
-          <router-link :to="{ name: 'shopping_cart' }"><img src="../assets/shopping-cart.png" style="width: 100%;max-width: 80px; min-width: 25px"></router-link>
+          <router-link :to="{ name: 'shopping_cart' }"><img src="../assets/shopping-cart.png" alt="Carrito" style="width: 100%;max-width: 80px; min-width: 25px"></router-link>
         </div>
       </b-col>
 
@@ -33,7 +33,7 @@
 
       <b-col class="col-lg-12">
 
-        <b-navbar toggleable="lg" class="navbar">
+        <b-navbar toggleable="lg" sticky>
 
           <b-navbar-toggle target="nav-collapse" style="background-color: azure; width: 30px; padding: 1px" ></b-navbar-toggle>
 
@@ -102,11 +102,6 @@ export default {
 </script>
 
 <style scoped>
-
-.navbar {
-  top: 0;
-  align-self: center;
-}
 
 .menufont {
   color: azure !important;

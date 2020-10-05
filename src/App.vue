@@ -1,6 +1,6 @@
 <template>
   <div id="app" style="margin-top: 0px;">
-    <div id="topMenu_div" style="position: sticky;">
+    <div id="topMenu_div" class="position-sticky">
       <TopMenu/>
     </div>
 
