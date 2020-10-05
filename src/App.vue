@@ -1,8 +1,34 @@
 <template>
-  <div id="app">
+  <div id="app" style="margin-top: 0px;">
+    <div id="topMenu_div" class="position-sticky">
+      <TopMenu/>
+    </div>
+
     <router-view />
+
   </div>
 </template>
 
-<style></style>
+
+<script>
+import TopMenu from './components/TopMenu.vue'
+
+export default {
+  name: 'App',
+  components: {
+    TopMenu
+  }
+}
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
 

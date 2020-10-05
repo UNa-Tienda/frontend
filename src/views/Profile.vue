@@ -1,16 +1,12 @@
 <template>
     <div class="container-fluid containerExterno">
         <div class="row">
-            <div class="col-12">
-                <br />
-                <img class="logo " src="../assets/logo.png" alt="Logo" />
-            </div>
         </div>
         <div class="container mt-5">
-            <b-row class="mt-5">
+            <b-row class="mt-5 ">
                 <b-col cols="5">
-                    <img class="fotoperfil  col-xs-12 col-sm-12 col-md-10 col-lg-10 " src="../assets/perfil.png" alt="Perfil" />
-                    <div class="text-center mr-5" align-v="center"> 
+                    <img class="fotoperfil  col-xs-12 col-sm-12 col-md-10 col-lg-12 " src="../assets/perfil.png" alt="Perfil" />
+                    <div class="text-center mr-5 col-xs-12 col-sm-12 col-md-10 col-lg-12" align-v="center" > 
                         <b-button  class="mt-3" size="lg" pill variant="primary">Cambiar imagen</b-button>
                     </div>
                 </b-col>
@@ -27,32 +23,32 @@
             <h1 class="titulo mt-5 mb-3">Mis Datos</h1>
             <div class="info">
                 <b-row class="mt-5">
-                    <b-col md="auto">
-                        <h4 class="text-center mb-4">Nombre :</h4>
-                        <h4 class="text-center mb-4">Nickname :</h4>
-                        <h4 class="text-center mb-4">Correo :</h4>
-                        <h4 class="text-center mb-4">Dirección :</h4>
-                        <h4 class="text-center mb-4">Telefono :</h4>
+                    <b-col cols="4" md="auto">
+                        <h4 class="text-center mb-4">Nombre:</h4>
+                        <h4 class="text-center mb-4">Nickname:</h4>
+                        <h4 class="text-center mb-4">Correo:</h4>
+                        <h4 class="text-center mb-4">Dirección:</h4>
+                        <h4 class="text-center mb-4">Telefono:</h4>
                     </b-col>
-                    <b-col md="auto">
-                        <h4 class="text-center mb-4">..........................................</h4>
-                        <h4 class="text-center mb-4">..........................................</h4>
-                        <h4 class="text-center mb-4">..........................................</h4>
-                        <h4 class="text-center mb-4">..........................................</h4>
-                        <h4 class="text-center mb-4">..........................................</h4>
+                    <b-col cols="4" md="auto">
+                        <h4 class="text-center mb-4">.</h4>
+                        <h4 class="text-center mb-4">.</h4>
+                        <h4 class="text-center mb-4">.</h4>
+                        <h4 class="text-center mb-4">.</h4>
+                        <h4 class="text-center mb-4">.</h4>
                     </b-col>
-                    <b-col md="auto">
+                    <b-col cols="4" md="auto">
                         <br />
                         <br />
                         <br />
                         <br />
-                        <b-button  size="lg" pill variant="primary">Editar Información</b-button>
+                        <b-button  size="md" pill variant="primary">Editar Información</b-button>
                     </b-col>
                 </b-row>
             </div>
             <b-row class="mt-5 mb-3">
                 <b-col cols="12">
-                        <b-button class ="col-12 mt-2" size="lg" type="sumbit" href="" variant="primary">Volver a la pagina principal</b-button>
+                        <b-button class ="col-12 mt-2" size="lg" type="sumbit" to="/" variant="primary">Volver a la pagina principal</b-button>
                 </b-col>
             </b-row>
 
@@ -73,15 +69,10 @@
   
 }
 
-.logo {
-  height: 80px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .fotoperfil {
- height: 160px;
+ height: auto;
+ min-height: 80px;
+ min-width: 80px;
  display: block;
  
 

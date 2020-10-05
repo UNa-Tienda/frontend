@@ -3,7 +3,9 @@
     <div class="row">
       <div class="col-12">
         <br />
-        <img class="logoregister" src="../assets/logo.png" alt="Logo" />
+        <router-link :to="{ name: 'home' }">
+          <img class="logoregister" src="../assets/logo.png" alt="Logo" />
+        </router-link>
         <div id="login" class="login">
           <b-form @submit="onSubmit" class="register col-xs-12 col-sm-8 col-md-6 col-lg-4 border border-primary rounded-lg">
                 <h2 class="col-12 text-center text-primary mt-3 mb-3">Login</h2>

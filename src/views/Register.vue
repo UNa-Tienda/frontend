@@ -3,7 +3,6 @@
     <div class="row">
       <div class="col-12">
         <br />
-        <img class="logoregister" src="../assets/logo.png" alt="Logo" />
         <div id="signUp" class="signUp">
           <form
             @submit="signUp"
