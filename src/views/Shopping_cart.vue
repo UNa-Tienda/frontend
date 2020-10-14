@@ -9,8 +9,13 @@
     <TopMenu />
   </div>
 
+  <div class="main-container">
+    <div class="col-xs-12 col-sm-8 col-md-6 border border-primary rounded-lg">
+      <h3 class="col-12 text-center text-primary mt-3 mb-3">Mi carrito de Compras</h3>
 
-
+      
+    </div>
+  </div>
 
   <div>
     <Footer />
@@ -33,4 +38,11 @@ export default {
 
 <style scoped>
 
+.main-container{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 </style>
