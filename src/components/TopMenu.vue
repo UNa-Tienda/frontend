@@ -48,7 +48,7 @@
                 <template v-slot:button-content>
                 <a style="color: azure!important; padding-top: 0">Categorias</a>
                 </template>
-                <b-dropdown-item href="#">Tecnologia</b-dropdown-item>
+                <b-dropdown-item href="/tecnologia">Tecnologia</b-dropdown-item>
                 <b-dropdown-item href="#">Alimentos</b-dropdown-item>
                 <b-dropdown-item href="#">Muebles</b-dropdown-item>
                 <b-dropdown-item href="#">Otros</b-dropdown-item>

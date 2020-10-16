@@ -5,6 +5,7 @@ import Router from "vue-router";
 import Register from "./views/Register";
 import ForgotPassword from "./views/ForgotPassword";
 import Profile from "./views/Profile.vue";
+import Tecnologia from "./views/Tecnologia.vue"
 
 Vue.use(Router);
 
@@ -36,6 +37,11 @@ export default new Router({
       path: "/profile",
       name: "profile",
       component: Profile,
+    },
+    {
+      path: "/tecnologia",
+      name: "Tecnologia",
+      component: Tecnologia,
     },
   ],
 });
