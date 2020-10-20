@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid container-register">
+  <div class="container-fluid containerExternoIS">
     <div class="row">
       <div class="col-12">
         <br />
@@ -9,7 +9,7 @@
         <div id="login" class="login">
           <b-form
             @submit="onSubmit"
-            class="register col-xs-12 col-sm-8 col-md-6 col-lg-4 border border-primary rounded-lg"
+            class="datosIS col-xs-12 col-sm-8 col-md-6 col-lg-4 border border-primary rounded-lg"
           >
             <h2 class="col-12 text-center text-primary mt-3 mb-3">Login</h2>
             <img class="IS" src="../assets/IS.png" alt="ISL" />
@@ -86,24 +86,14 @@ export default {
 </script>
 
 <style>
-.container-register {
+.containerExternoIS {
   background: #012433;
 }
 .login {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 86.8vh;
-}
-.register {
-  background: white;
-  color: #0b99d6;
-}
-.logoregister {
-  height: 80px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+  min-height: 87.1vh;
 }
 .IS {
   display: block;
@@ -111,5 +101,9 @@ export default {
   width: 150px;
   margin-left: auto;
   margin-right: auto;
+}
+.datosIS {
+  background: white;
+  color: #054c6b;
 }
 </style>

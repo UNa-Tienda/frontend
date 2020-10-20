@@ -6,6 +6,7 @@ import Register from "./views/Register";
 import ForgotPassword from "./views/ForgotPassword";
 import Profile from "./views/Profile.vue";
 import Tecnologia from "./views/Tecnologia.vue"
+import Post from "./views/Post.vue";
 
 Vue.use(Router);
 
@@ -43,5 +44,10 @@ export default new Router({
       name: "Tecnologia",
       component: Tecnologia,
     },
+    {
+      path: "/post",
+      name: "post",
+      component: Post,
+    }
   ],
 });

@@ -121,12 +121,14 @@ export default {};
 <style>
 .container-register {
   background: #012433;
+  
 }
 .signUp {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 20px;
+  min-height: 84.5vh;
 }
 .register {
   background: white;
