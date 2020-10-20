@@ -115,7 +115,64 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+const path = "/api/people/add";
+export default {
+  name: "Register",
+  data() {
+    return {};
+  },
+  beforeCreate() {
+    const rolesPath = "/roles";
+    axios
+      .get(this.$store.state.backURL + rolesPath)
+      .then((response) => {
+        if (response.status !== 200) {
+          alert("Error en la petición. Intente nuevamente");
+        } else {
+          this.roles = response.data;
+        }
+      })
+      .catch(() => {
+        alert("No es posible conectar con el backend en este momento");
+      });
+  },
+  methods: {
+    signUp(event) {
+      if (this.password !== this.cPassword) {
+        event.preventDefault();
+        return;
+      }
+      axios
+        .post(this.$store.state.backURL + path + this.role, {
+          names: this.names.trim(),
+          surnames: this.surnames.trim(),
+          username: this.username.trim(),
+          password: this.password,
+        })
+        .then((response) => {
+          if (response.status !== 201) {
+            alert("Error en el almacenamiento del usuario");
+          } else {
+            alert("Usuario registrado correctamente");
+          }
+        })
+        .catch((error) => {
+          if (error.response.status === 400) {
+            alert(
+              'Parece que ya existe un usuario con el nombre de usuario "' +
+                this.username +
+                '"'
+            );
+          } else {
+            alert("Error en la aplicación");
+          }
+        });
+      event.preventDefault();
+      return true;
+    },
+  },
+};
 </script>
 
 <style>
