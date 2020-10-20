@@ -1,6 +1,12 @@
 <template>
   <div id="app">
+    <h1>{{category}}</h1>
     <div class="container">
+      <ul>
+        <li v-for="post in posts" :key="post.id">
+          {{post.category_id.name}}
+        </li>
+      </ul>
       <div class="row cardRow">
         <div class="col">
           <div class="card border-primary" style="width: 16rem">
@@ -115,8 +121,33 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: "CategorySearch",
+  data(){
+    return{
+      posts: []
+    }
+  },
+  props: [
+    "category",
+    "category_id"
+  ],
+  beforeCreate(){
+    const postPath = '/posts';
+
+    axios.get(this.$store.state.backURL + postPath).then(response =>{
+      if(response.status !== 200){
+        alert( "Error en la petición. Intente nuevamente" )
+      }else{
+        this.posts = response.data;
+      }
+    }).catch(response =>{
+      console.log(response.status);
+      alert( "No es posible conectar con el backend en este momento" );
+    })
+
+  }
 };
 </script>
 

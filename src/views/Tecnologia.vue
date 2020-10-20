@@ -14,8 +14,8 @@
     >
       <div>
         <div>
-          <h1>Tecnología</h1>
-          <CategorySearch />
+          <!-- <h1>Tecnología</h1> -->
+          <CategorySearch :category="category"></CategorySearch>
         </div>
       </div>
     </div>
@@ -34,6 +34,11 @@ export default {
     TopMenu,
     CategorySearch,
     Footer,
+  },
+  data() {
+    return{
+      category: 'Tecnología'
+    }
   },
 };
 </script>
