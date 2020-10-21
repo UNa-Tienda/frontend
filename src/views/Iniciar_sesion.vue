@@ -94,7 +94,7 @@ import axios from 'axios'
                 },  
                 ).then( response => {
                     if( response.status !== 200 ){
-                        alert( "Credenciales incorrectas" );
+                        alert( "Error en la autenticación" );
                     }else{
                         alert( "Bienvenido Usuario !" );
                         localStorage.setItem( 'email', this.email );
@@ -103,7 +103,7 @@ import axios from 'axios'
                     if( error.response.status === 400 ){
                       alert( "Credenciales incorrectas" );
                     }else{
-                      alert( "Credenciales incorrectas" );
+                      alert( "¡Parece que hubo un error de comunicación con el servidor!" );
                     }
                 } );
 
