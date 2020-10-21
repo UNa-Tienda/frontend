@@ -36,8 +36,8 @@ export default {
   },
   data() {
     return{
-      category: 'Tecnología',
-      category_id: 1
+      category: 'Deportes',
+      category_id: 2
     }
   },
 };

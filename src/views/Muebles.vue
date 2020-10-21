@@ -36,8 +36,8 @@ export default {
   },
   data() {
     return{
-      category: 'Tecnología',
-      category_id: 1
+      category: 'Muebles',
+      category_id: 3
     }
   },
 };
