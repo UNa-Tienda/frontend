@@ -5,6 +5,11 @@ import Router from "vue-router";
 import Register from "./views/Register";
 import ForgotPassword from "./views/ForgotPassword";
 import Profile from "./views/Profile.vue";
+import Tecnologia from "./views/Tecnologia.vue"
+import Deportes from "./views/Deportes.vue"
+import Muebles from "./views/Muebles.vue"
+import Accesorios from "./views/Accesorios.vue"
+import Belleza from "./views/Belleza.vue"
 import Post from "./views/Post.vue";
 
 Vue.use(Router);
@@ -39,9 +44,34 @@ export default new Router({
       component: Profile,
     },
     {
+      path: "/tecnologia",
+      name: "Tecnologia",
+      component: Tecnologia,
+    },
+    {
+      path: "/deportes",
+      name: "Deportes",
+      component: Deportes,
+    },
+    {
+      path: "/muebles",
+      name: "Muebles",
+      component: Muebles,
+    },
+    {
+      path: "/accesorios",
+      name: "Accesorios",
+      component: Accesorios,
+    },
+    {
+      path: "/belleza",
+      name: "Belleza",
+      component: Belleza,
+    },
+    {
       path: "/post",
       name: "post",
       component: Post,
-    },
+    }
   ],
 });
