@@ -8,7 +8,7 @@
           class="zoom"
           src="../assets/bike.png"
           style="cursor:pointer"
-          onclick="document.location='http://localhost:8080/#'"
+          onclick="document.location='http://localhost:8080/deportes'"
           width="200"
           height="200"
           id="category1"
@@ -22,7 +22,7 @@
           class="zoom"
           src="../assets/nail.png"
           style="cursor:pointer"
-          onclick="document.location='http://localhost:8080/#'"
+          onclick="document.location='http://localhost:8080/belleza'"
           width="200"
           height="200"
           id="category2"
@@ -38,12 +38,12 @@
           class="zoom"
           src="../assets/radio1.png"
           style="cursor:pointer"
-          onclick="document.location='http://localhost:8080/#'"
+          onclick="document.location='http://localhost:8080/tecnologia'"
           width="200"
           height="200"
           id="category3"
         />
-        <h3>Electrodomesticos</h3>
+        <h3>Tecnología</h3>
         <p>Lo que siempre has querido, al alcance de tu mano</p>
       </div>
       <div class="w3-quarter">
@@ -52,7 +52,7 @@
           class="zoom"
           src="../assets/auri.png"
           style="cursor:pointer"
-          onclick="document.location='http://localhost:8080/#'"
+          onclick="document.location='http://localhost:8080/accesorios'"
           width="200"
           height="200"
           id="category4"

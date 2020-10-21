@@ -8,7 +8,7 @@
         </router-link>
         <div id="login" class="login">
           <b-form
-            @submit="onSubmit"
+            @submit="login"
             class="datosIS col-xs-12 col-sm-8 col-md-6 col-lg-4 border border-primary rounded-lg"
           >
             <h2 class="col-12 text-center text-primary mt-3 mb-3">Login</h2>
@@ -21,7 +21,7 @@
             >
               <b-form-input
                 id="input-1"
-                v-model="form.email"
+                v-model="email"
                 type="email"
                 required
                 placeholder="usuario@email.com"
@@ -35,7 +35,7 @@
             >
               <b-form-input
                 id="input-2"
-                v-model="form.contraseña"
+                v-model="password"
                 required
                 placeholder="Ingrese su contraseña"
                 type="password"
@@ -67,22 +67,50 @@
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      form: {
-        email: "",
-        contraseña: "",
-      },
-    };
-  },
-  methods: {
-    onSubmit(evt) {
-      evt.preventDefault();
-      alert(JSON.stringify(this.form));
-    },
-  },
-};
+import axios from 'axios'
+
+  const path = "/api/people/login";
+
+    export default {
+        name: "Iniciar_sesion.vue",
+        components: {},
+        data(){
+            return {
+                email: '',
+                password: ''
+            }
+        },
+        methods: {
+            login( event ){
+                axios
+              .post( this.$store.state.backURL + path,
+                {
+        
+                  
+                  email: this.email.trim( ),
+                  password: this.password.trim( ),
+                  
+
+                },  
+                ).then( response => {
+                    if( response.status !== 200 ){
+                        alert( "Error en la autenticación" );
+                    }else{
+                        alert( "Bienvenido Usuario !" );
+                        localStorage.setItem( 'email', this.email );
+                    }
+                } ).catch( error => {
+                    if( error.response.status === 400 ){
+                      alert( "Credenciales incorrectas" );
+                    }else{
+                      alert( "¡Parece que hubo un error de comunicación con el servidor!" );
+                    }
+                } );
+
+                event.preventDefault();
+            }
+        }
+    }
 </script>
 
 <style>
