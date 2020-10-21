@@ -1,7 +1,7 @@
 <template>
-  <div class="vendedor inline-block">
+  <div class="vendedor">
     <img class="imageVendedor" src="../../assets/vendedor.png" alt="vendedor" />
-    <p>Informacion del vendedor</p>
+    <p>Información del vendedor</p>
   </div>
 </template>
 
@@ -11,9 +11,9 @@ export default {};
 
 <style>
 .imageVendedor {
-  height: 50px;
+  height: 80px;
   display: block;
-  margin-left: 20px;
+  margin-left: auto;
   margin-right: auto;
 }
 </style>

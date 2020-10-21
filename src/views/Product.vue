@@ -5,11 +5,13 @@
       <b-container class="bv-example-row">
         <b-row>
           <b-col class="col-xs-12 col-sm-6 col-md-6 col-lg-7 cuadro1 mt-3">
-            <ImageProduct />
-            <Vendedor />
+            <div>
+              <ImageProduct />
+            </div>
           </b-col>
           <b-col class="col-xs-12 col-sm-6 col-md-6 col-lg-5 cuadro2 mt-3">
-            <Info />
+            <div><Info /></div>
+            <div><Vendedor /></div>
           </b-col>
         </b-row>
       </b-container>
