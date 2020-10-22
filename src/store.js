@@ -5,7 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    backURL: "http://localhost:8080",
+    backURL: "http://localhost:8282",
   },
   mutations: {},
   actions: {},
