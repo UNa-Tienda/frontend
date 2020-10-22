@@ -25,7 +25,7 @@
           </b-col>
 
           <b-col class="col-1 col-sm-1" align-self="center">
-            <div>
+            <div v-show="logged">
               <router-link :to="{ name: 'shopping_cart' }"
                 ><img
                   src="../assets/shopping-cart.png"

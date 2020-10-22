@@ -7,157 +7,131 @@
     >
       <TopMenu />
     </div>
-    <div class="container-fluid containerExterno">
-      <div class="row"></div>
-      <div class="container mt-5 containerInterno">
-        <b-row class="mt-5">
-          <b-col cols="5">
-            <img
-              class="fotoperfil col-xs-12 col-sm-12 col-md-10 col-lg-12"
-              src="../assets/perfil.png"
-              alt="Perfil"
-            />
-            <div
-              class="text-center mr-5 col-xs-12 col-sm-12 col-md-10 col-lg-12"
-              align-v="center"
-            >
-              <b-button class="mt-3" size="lg" pill variant="primary"
-                >Cambiar imagen</b-button
-              >
-            </div>
-          </b-col>
-
+    <div class="containerExterno mt-5">
+      <div class="contenedor">
+        <div>
+          <img
+            class="fotoperfil col-xs-12 col-sm-12 col-md-10 col-lg-12 mt-5"
+            src="../assets/perfil.png"
+            alt="Perfil"
+            style="width: 80%; margin: 0 auto"
+          />
+        </div>
+        <div>
           <b-col>
-            <h1 class="titulo mt-7 mb-3">Mis Datos</h1>
+            <h1 class="titulo my-4 ml-5">Mis Datos</h1>
             <div class="info">
-              <b-row class="mt-5">
-                <b-col cols="6" md="auto">
-                  <h4 class="text-center mb-4">Nombre:</h4>
-                  <h4 class="text-center mb-4">Nickname:</h4>
-                  <h4 class="text-center mb-4">Correo:</h4>
-                  <h4 class="text-center mb-4">Dirección:</h4>
-                </b-col>
-                <b-col cols="6" md="auto">
-                  <h4 class="text-center mb-4">{{ person.name }}</h4>
-                  <h4 class="text-center mb-4">.</h4>
-                  <h4 class="text-center mb-4">.</h4>
-                  <h4 class="text-center mb-4">.</h4>
-                </b-col>
-              </b-row>
+              <b-col cols="6" md="auto">
+                <h4 class="text-left col-md-offset-4 my-4 ml-5 infoUser">
+                  Nombre:
+                </h4>
+                <h4 class="text-left my-4 ml-5 infoUser">Nickname:</h4>
+                <h4 class="text-left my-4 ml-5 infoUser">Correo:</h4>
+                <h4 class="text-left my-4 ml-5 infoUser">Dirección:</h4>
+              </b-col>
+              <b-col cols="6" md="auto">
+                <h4 class="text-right my-4">{{ person.name }}</h4>
+                <h4 class="text-right my-4">{{ person.username }}</h4>
+                <h4 class="text-right my-4">{{ person.email }}</h4>
+                <h4 class="text-right my-4">{{ person.location }}</h4>
+              </b-col>
             </div>
           </b-col>
-        </b-row>
-        <b-row>
-          <b-col cols="5">
-            <div>
-              <b-button
-                class="col-12 mt-2"
-                size="lg"
-                type="sumbit"
-                href=""
-                variant="primary"
-                >Historial de Compras</b-button
-              >
-              <br />
-              <br />
-              <br />
-              <b-button
-                class="col-12"
-                size="lg"
-                type="sumbit"
-                href=""
-                variant="primary"
-                >Historial de Ventas</b-button
-              >
-            </div>
-          </b-col>
+        </div>
 
-          <b-col>
-            <b-button v-b-modal.modal-1 size="md" pill variant="primary"
-              >Editar Información</b-button
-            >
+        <div class="mt-3">
+          <b-button class="col-5" size="lg" pill variant="primary"
+            >Cambiar imagen</b-button
+          >
+        </div>
 
-            <b-modal id="modal-1" title="Editar información">
-              <form
-                @submit="signUp"
-                class="register col-xs-12 col-sm-8 col-md-6 col-lg-4 border border-primary rounded-lg"
-              >
+        <div class="mt-3 ml-5">
+          <b-button id="editar" v-b-modal.modal-1 size="lg" pill variant="primary"
+          >Editar</b-button
+        >
+        </div>
 
-                <div class="form-group col-12 mb-1">
-                  <label class="custom-label" for="names"
-                    >Nombre y Apellido</label
-                  >
-                  <input
-                    id="names"
-                    class="form-control col-12"
-                    type="text"
-                    placeholder="Ej: Pablo Neruda"
-                    v-model="names"
-                    required
-                  />
-                </div>
+        <div class="mt-2">
+          <b-button
+            class="col-5 mr-2"
+            size="lg"
+            type="sumbit"
+            href=""
+            variant="primary"
+            pill
+            >Historial de Compras</b-button
+          >
 
-                <div class="form-group col-12 mb-1">
-                  <label class="custom-label" for="username"
-                    >Nombre de Usuario</label
-                  >
-                  <input
-                    id="username"
-                    class="form-control col-12"
-                    type="text"
-                    placeholder="Ingrese Nombre de Usuario"
-                    v-model="username"
-                    required
-                  />
-                </div>
-
-                <div class="form-group col-12 mb-1">
-                  <label class="custom-label" for="email">Email</label>
-                  <input
-                    id="email"
-                    class="form-control col-12"
-                    type="email"
-                    placeholder="Ej: user@gmail.com"
-                    v-model="email"
-                    required
-                  />
-                </div>
-                <div class="form-group col-12 mb-1">
-                  <label class="custom-label" for="address">Dirección</label>
-                  <input
-                    id="address"
-                    class="form-control col-12"
-                    type="text"
-                    placeholder="Ingrese su dirección"
-                    v-model="address"
-                    required
-                  />
-                </div>
-
-                <div class="col-12">
-                  <button class="btn btn-primary col-12 mb-2" type="submit">
-                    Guardar cambios
-                  </button>
-                </div>
-              </form>
-            </b-modal>
-          </b-col>
-        </b-row>
-
-        <b-row class="mt-5 mb-3">
-          <b-col cols="12">
-            <b-button
-              class="col-12 mt-2"
-              size="lg"
-              type="sumbit"
-              to="/"
-              variant="primary"
-              >Volver a la pagina principal</b-button
-            >
-          </b-col>
-        </b-row>
+          <b-button
+            class="col-5 ml-2"
+            size="lg"
+            type="sumbit"
+            href=""
+            variant="primary"
+            pill
+            >Historial de Ventas</b-button
+          >
+        </div>
+        <div></div>
       </div>
     </div>
+
+        <b-modal id="modal-1" hide-footer title="Editar información">
+          <form
+            @submit="signUp"
+            class="register border border-primary rounded-lg"
+          >
+            <div class="form-group col-12 mb-1">
+              <label class="custom-label" for="names">Nombre y Apellido</label>
+              <input
+                id="names"
+                class="form-control col-12"
+                type="text"
+                :value="person.name"
+              />
+            </div>
+
+            <div class="form-group col-12 mb-1">
+              <label class="custom-label" for="username"
+                >Nombre de Usuario</label
+              >
+              <input
+                id="username"
+                class="form-control col-12"
+                type="text"
+                :value="person.username"
+              />
+            </div>
+
+            <div class="form-group col-12 mb-1">
+              <label class="custom-label" for="email">Email</label>
+              <input
+                id="email"
+                class="form-control col-12"
+                type="email"
+                :value="person.email"
+              />
+            </div>
+            <div class="form-group col-12 mb-1">
+              <label class="custom-label" for="address">Dirección</label>
+              <input
+                id="address"
+                class="form-control col-12"
+                type="text"
+                :value="person.location"
+              />
+            </div>
+
+            <div class="col-12">
+              <button class="btn btn-primary col-12 mb-2" @click="hideModal" type="submit">
+                Guardar cambios
+              </button>
+              <button class="btn btn-primary col-12 mb-2" @click="toggleModal" type="submit">
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </b-modal>
   </div>
 </template>
 
@@ -201,6 +175,20 @@ export default {
       });
   },
 
+  methods: {
+      showModal() {
+        this.$refs['modal-1'].show()
+      },
+      hideModal() {
+        this.$refs['modal-1'].hide()
+      },
+      toggleModal() {
+        // We pass the ID of the button that we want to return focus to
+        // when the modal has hidden
+        this.$refs['modal-1'].toggle('#editar')
+      }
+    },
+
   components: {
     TopMenu,
   },
@@ -211,6 +199,8 @@ export default {
 .containerExterno {
   background: #ffffff;
   min-height: 100vh;
+  width: 70vw;
+  margin: 0 auto;
 }
 .containerInterno {
   background: #ffffff;
@@ -231,8 +221,18 @@ export default {
 
 .info {
   display: flex;
+  flex-direction: row;
   align-items: left;
-  justify-content: left;
+  justify-content: space-between;
+}
+
+.contenedor {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+.infoUser {
   color: #054c6b;
+  font-weight: bold;
 }
 </style>
