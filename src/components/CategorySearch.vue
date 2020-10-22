@@ -37,7 +37,6 @@ export default {
           alert("Error en la petición. Intente nuevamente");
         } else {
           let postsResponse = response.data;
-          // this.posts = response.data;
 
           postsResponse.forEach((post) => {
             if (post.category_id.id === this.category_id) {

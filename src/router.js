@@ -5,6 +5,8 @@ import Router from "vue-router";
 import Register from "./views/Register";
 import ForgotPassword from "./views/ForgotPassword";
 import Profile from "./views/Profile.vue";
+
+import Shopping_cart from "@/views/Shopping_cart";
 import Product from "./views/Product.vue";
 import Tecnologia from "./views/Tecnologia.vue";
 import Deportes from "./views/Deportes.vue";
@@ -12,6 +14,7 @@ import Muebles from "./views/Muebles.vue";
 import Accesorios from "./views/Accesorios.vue";
 import Belleza from "./views/Belleza.vue";
 import Post from "./views/Post.vue";
+
 
 Vue.use(Router);
 
@@ -45,6 +48,11 @@ export default new Router({
       component: Profile,
     },
     {
+      path: "/shopping_cart",
+      name: "shopping_cart",
+      component: Shopping_cart,
+    },
+      {
       path: "/tecnologia",
       name: "Tecnologia",
       component: Tecnologia,
