@@ -17,15 +17,15 @@
 
           <b-col class="col-8 col-sm-9" align-self="center">
             <b-input-group class="sm">
-              <b-form-input placeholder="Buscar productos..."></b-form-input>
-              <b-input-group-append>
-                <b-button variant="">Buscar</b-button>
-              </b-input-group-append>
+            <b-form-input v-model="name" placeholder="Buscar productos..."></b-form-input>
+            <b-input-group-append>
+            <b-button v-on:click="getUsers" variant="">Buscar</b-button>
+            </b-input-group-append>
             </b-input-group>
           </b-col>
 
           <b-col class="col-1 col-sm-1" align-self="center">
-            <div v-show="logged">
+            <div>
               <router-link :to="{ name: 'shopping_cart' }"
                 ><img
                   src="../assets/shopping-cart.png"
@@ -38,6 +38,13 @@
           <!-- Segunda fila de items -->
 
           <b-col class="col-lg-12">
+
+            <b-list-group>
+            <b-list-group-item class="list-order" v-for="item in search" href="#" :key="item">
+              {{ item.name }}
+            </b-list-group-item>
+            </b-list-group>
+
             <b-navbar toggleable="lg" sticky>
               <b-navbar-toggle
                 target="nav-collapse"
@@ -148,12 +155,32 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: "TopMenu",
-  data() {
-    return {
+  data: function(){
+    return{
+      lists:[],
+      name:'' ,
       logged: false,
-    };
+    }
+  },
+  methods:{
+    logout() {
+      localStorage. removeItem("email");
+      this.logged = false;
+    },
+    getUsers: function(){
+        var urlUsers = 'https://jsonplaceholder.typicode.com/users';
+        axios.get(urlUsers).then(response => {
+        this.lists=response.data
+      });
+    }
+  },
+  computed:{
+      search: function(){
+        return this.lists.filter((item) => item.name.toLowerCase().includes(this.name.toLowerCase()));
+      }
   },
 
   mounted: function () {
@@ -205,4 +232,10 @@ export default {
     flex-direction: row;
   }
 }
+
+.list-order{
+  position: relative;
+  width: 40%;
+}
+
 </style>
