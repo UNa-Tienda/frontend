@@ -17,13 +17,13 @@
             <h3 class="col-12 text-center text-primary mt-3 mb-3">Registro</h3>
 
             <div class="form-group col-12 mb-1">
-              <label class="custom-label" for="names">Nombre y Apellido</label>
+              <label class="custom-label" for="name">Nombre y Apellido</label>
               <input
-                id="names"
+                id="name"
                 class="form-control col-12"
                 type="text"
                 placeholder="Ej: Pablo Neruda"
-                v-model="names"
+                v-model="name"
                 required
               />
             </div>
@@ -54,13 +54,13 @@
               />
             </div>
             <div class="form-group col-12 mb-1">
-              <label class="custom-label" for="address">Dirección</label>
+              <label class="custom-label" for="location">Dirección</label>
               <input
-                id="address"
+                id="location"
                 class="form-control col-12"
                 type="text"
                 placeholder="Ingrese su dirección"
-                v-model="address"
+                v-model="location"
                 required
               />
             </div>
@@ -90,6 +90,10 @@
                 placeholder="Confirmar Contraseña"
                 v-model="password2"
                 required
+                :class="{
+                  'is-invalid': password2 !== '' && password2 !== password,
+                  'is-valid': password2 !== '' && password2 === password,
+                }"
               />
             </div>
 
@@ -115,13 +119,95 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+const path = "/api/people/add";
+export default {
+  name: "Register",
+  data() {
+    return {
+      name: "",
+      username: "",
+      email: "",
+      password: "",
+      password2: "",
+      photo: "",
+      location: "",
+      paypal_id: "",
+      role: "",
+      roles: [],
+      response: null,
+    };
+  },
+  beforeCreate() {
+    const rolesPath = "/roles";
+    axios
+      .get(this.$store.state.backURL + rolesPath)
+      .then((response) => {
+        if (response.status !== 200) {
+          alert("Error en la petición. Intente nuevamente");
+        } else {
+          this.roles = response.data;
+        }
+      })
+      .catch(() => {
+        alert("No es posible conectar con el backend en este momento");
+      });
+  },
+  methods: {
+    signUp(event) {
+      if (this.password !== this.password2) {
+        event.preventDefault();
+        return;
+      }
+      axios
+        .post(this.$store.state.backURL + path + this.role, {
+          name: this.name.trim(),
+          email: this.email.trim(),
+          username: this.username.trim(),
+          location: this.location.trim(),
+          password: this.password,
+          photo: "foto",
+          paypal_id: 0,
+        })
+        .then((response) => {
+          if (response.status !== 201) {
+            alert("Error en el almacenamiento del usuario");
+          } else {
+            alert(
+              "El usuario " +
+                this.name +
+                "" +
+                " ha sido registrado, ya puede iniciar sesión"
+            );
+            this.name = "";
+            this.username = "";
+            this.email = "";
+            this.location = "";
+            this.password = "";
+            this.password2 = "";
+          }
+        })
+        .catch((error) => {
+          if (error.response.status === 400) {
+            alert(
+              'Parece que ya existe un usuario con el nombre de usuario "' +
+                this.username +
+                '"'
+            );
+          } else {
+            alert("Error en la aplicación");
+          }
+        });
+      event.preventDefault();
+      return true;
+    },
+  },
+};
 </script>
 
 <style>
 .container-register {
   background: #012433;
-  
 }
 .signUp {
   display: flex;
