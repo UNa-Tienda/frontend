@@ -182,12 +182,20 @@ export default {
         return this.lists.filter((item) => item.name.toLowerCase().includes(this.name.toLowerCase()));
       }
   },
+
   mounted: function () {
     this.$nextTick(function () {
       if (localStorage.getItem("email") != null) {
         this.logged = true;
       }
     });
+  },
+
+  methods: {
+    logout() {
+      localStorage. removeItem("email");
+      this.logged = false;
+    },
   },
 };
 </script>
