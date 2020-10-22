@@ -7,11 +7,12 @@ import ForgotPassword from "./views/ForgotPassword";
 import Profile from "./views/Profile.vue";
 
 import Shopping_cart from "@/views/Shopping_cart";
-import Tecnologia from "./views/Tecnologia.vue"
-import Deportes from "./views/Deportes.vue"
-import Muebles from "./views/Muebles.vue"
-import Accesorios from "./views/Accesorios.vue"
-import Belleza from "./views/Belleza.vue"
+import Product from "./views/Product.vue";
+import Tecnologia from "./views/Tecnologia.vue";
+import Deportes from "./views/Deportes.vue";
+import Muebles from "./views/Muebles.vue";
+import Accesorios from "./views/Accesorios.vue";
+import Belleza from "./views/Belleza.vue";
 import Post from "./views/Post.vue";
 
 
@@ -80,6 +81,11 @@ export default new Router({
       path: "/post",
       name: "post",
       component: Post,
-    }
+    },
+    {
+      path: "/product",
+      name: "product",
+      component: Product,
+    },
   ],
 });

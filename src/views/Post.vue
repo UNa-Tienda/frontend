@@ -80,7 +80,7 @@
                     </b-form-group>
                     <b-form-select class="form-group col-12 mb-4" v-model="category" required>
                       <option value="" disabled selected>-- Seleccione una categoria --</option>
-                      <option v-for="category in categorys" :key="category.id" :value="category.id">{{category.name}}</option>
+                      <option v-for="category in categories" :key="category.id" :value="category.id">{{category.name}}</option>
                     </b-form-select>
                   </b-col>
                 </b-row>
@@ -115,13 +115,13 @@ import axios from 'axios'
         stock: 1,
         price: '',
         category: '',
-        categorys: [],
+        categories: [],
         response: null,
         
       }
     },
     beforeCreate( ){
-      const categoryPath = '/categorys';
+      const categoryPath = '/categories';
       axios
         .get( this.$store.state.backURL + categoryPath )
         .then( response => {
@@ -139,7 +139,7 @@ import axios from 'axios'
     methods:{
       createPost( event ){
         axios
-          .post( this.$store.state.backURL + path + this.category,
+          .post( this.$store.state.backURL + path + this.categories,
             {
     
               image: "Nada",
