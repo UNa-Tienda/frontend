@@ -15,7 +15,7 @@
 
       <SC_ItemList style="margin-bottom: 20px" v-bind:items="SCitems"/>
 
-      <h4>Total a pagar: $</h4>
+      <!--<h4>Total a pagar: $</h4>-->
 
       <b-button-group style="margin-bottom: 20px">
         <b-button style="margin-right: 10px">Cancelar</b-button>
@@ -34,6 +34,7 @@
 import TopMenu from "@/components/TopMenu";
 import Footer from "@/components/Footer";
 import SC_ItemList from "@/components/SC_ItemList";
+import axios from "axios";
 
 export default {
   components: {
@@ -43,27 +44,36 @@ export default {
   },
   data() {
     return {
-      SCitems: [
-          {
-            id: 1,
-            title: "primer item radio de baterias marca XYZ",
-            quantity: 1,
-            price: 100
-          },
-        {
-          id: 2,
-          title: "segundo item",
-          quantity: 10,
-          price: 135000
-        },
-        {
-          id: 3,
-          title: "tercer item",
-          quantity: 6,
-          price: 70000
-        }
-      ]
+      email: '',
+      SCitems: []
+
     }
+  },
+  beforeMount() {
+    const postPath = "/shopping_cart";
+    const email = localStorage.getItem("email");
+
+    axios
+        .post(this.$store.state.backURL + postPath,
+            {
+              email: email,
+            },)
+        .then((response) => {
+          if (response.status !== 200) {
+            alert("Error en la petición. Intente nuevamente");
+          } else {
+            let postsResponse = response.data;
+            // this.posts = response.data;
+
+            postsResponse.forEach((item) => {
+                this.SCitems.push(item)
+            });
+          }
+        })
+        .catch((response) => {
+          console.log(response.status);
+          alert("No es posible conectar con el backend en este momento");
+        });
   }
 }
 

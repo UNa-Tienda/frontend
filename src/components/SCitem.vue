@@ -6,8 +6,8 @@
         <router-link :to="{ name: 'home' }"><img src="../assets/radio.png" style="width: 100%; max-width: 150px"></router-link>
       </div>
       <div class="col-6" style="align-self: center">
-        <router-link :to="{ name: 'home' }" style="text-decoration: none!important;"><h3 style="color: white!important;">{{item.title}}</h3></router-link>
-        <h4>precio: ${{item.price}}</h4>
+        <router-link :to="{ name: 'home' }" style="text-decoration: none!important;"><h3 style="color: white!important;">{{item.cartshop_item_post_id.title}}</h3></router-link>
+        <h4>precio: ${{item.cartshop_item_post_id.price}}</h4>
         <h4>{{item.quantity}} unidades</h4>
       </div>
       <div class="col-3" style="align-self: center">
