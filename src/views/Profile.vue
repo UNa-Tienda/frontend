@@ -80,7 +80,7 @@
             <b-modal id="modal-1" title="Editar información">
               <form
                 @submit="signUp"
-                class="register col-xs-12 col-sm-8 col-md-6 col-lg-4 border border-primary rounded-lg"
+                class="register border border-primary rounded-lg"
               >
 
                 <div class="form-group col-12 mb-1">
