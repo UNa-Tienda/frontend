@@ -12,10 +12,12 @@
         rebote. El balón se envía inflado con la calibración recomendada de
         fábrica,
       </p>
+      <h5 class="text-dark">Categoria: Deportes</h5>
+      <br />
 
       <h2>$94.900</h2>
       <br />
-      <h4 class="text-primary">Stock disponibles: 7 unidades</h4>
+      <h5 class="text-primary">Stock disponibles: 7 unidades</h5>
 
       <div class="cantidad mt-3 mb-2">
         <b-row>
