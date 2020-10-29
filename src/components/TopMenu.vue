@@ -190,13 +190,6 @@ export default {
       }
     });
   },
-
-  methods: {
-    logout() {
-      localStorage. removeItem("email");
-      this.logged = false;
-    },
-  },
 };
 </script>
 
