@@ -13,7 +13,7 @@
     <div class="col-xs-12 col-sm-8 col-md-6 border rounded-lg" style="background-color: azure">
       <h3 class="col-12 text-center text-primary mt-3 mb-3">Mi carrito de Compras</h3>
 
-      <SC_ItemList style="margin-bottom: 20px" v-bind:items="SCitems"/>
+      <SC_ItemList style="margin-bottom: 20px" v-bind:items="SCitems" v-on:del-item="deleteItem"/>
 
       <!--<h4>Total a pagar: $</h4>-->
 
@@ -74,6 +74,11 @@ export default {
           console.log(response.status);
           alert("No es posible conectar con el backend en este momento");
         });
+  },
+  methods: {
+    deleteItem(id) {
+      this.SCitems = this.SCitems.filter(item => item.id !== id);
+    }
   }
 }
 

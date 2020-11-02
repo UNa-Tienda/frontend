@@ -2,7 +2,7 @@
 
   <div>
     <div v-for="item in items" v-bind:key="item">
-      <SCitem style="margin-bottom: 10px" v-bind:item="item"/>
+      <SCitem style="margin-bottom: 10px" v-bind:item="item" v-on:del-item="$emit('del-item',item.id)"/>
     </div>
 
   </div>
