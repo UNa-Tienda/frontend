@@ -110,72 +110,81 @@
 
 <script>
 import TopMenu from "../components/TopMenu.vue";
-import axios from "axios";
+import axios from 'axios'
+import {getAuthenticationToken} from '@/dataStorage';
+
 
 const path = "/api/post/add/";
 
-export default {
-  name: "Post.vue",
-  data() {
-    return {
-      image: null,
-      category_id: "",
-      title: "",
-      product_name: "",
-      description: "",
-      stock: 1,
-      price: "",
-      category: "",
-      categories: [],
-      response: null,
-    };
-  },
-  beforeCreate() {
-    const categoryPath = "/categories";
-    axios
-      .get(this.$store.state.backURL + categoryPath)
-      .then((response) => {
-        if (response.status !== 200) {
-          alert("Error en la petición. Intente nuevamente");
-        } else {
-          this.categories = response.data;
-        }
-      })
-      .catch((response) => {
-        alert("No es posible conectar con el backend en este momento");
-        return response;
-      });
-  },
-
-  methods: {
-    createPost(event) {
+  export default {
+    name: "Post.vue",
+    data( ){
+      return{
+        image: null,
+        category_id : '',
+        title: '',
+        product_name: '',
+        description: '',
+        stock: 1,
+        price: '',
+        category: '',
+        categories: [],
+        response: null,
+        
+      }
+    },
+    beforeCreate( ){
+      const categoryPath = '/api/category/categories';
       axios
-        .post(this.$store.state.backURL + path + this.categories, {
-          image: "Nada",
-          title: this.title.trim(),
-          product_name: this.product_name.trim(),
-          description: this.description.trim(),
-          price: this.price.trim(),
-          stock: this.stock,
-        })
-        .then((response) => {
-          if (response.status !== 201) {
-            alert("Error en la creación del post");
-          } else {
-            alert("Post creado correctamente");
-          }
-        })
-        .catch((error) => {
-          if (error.response.status === 400) {
-            alert("Un error ocurrio ");
-          } else {
-            alert("Error en la aplicación");
+        .get( this.$store.state.backURL + categoryPath )
+        .then( response => {
+          if( response.status !== 200 ){
+            alert( "Error en la petición. Intente nuevamente" )
+          }else{
+            this.categories = response.data;
           }
         });
       event.preventDefault();
       return true;
     },
-  },
+
+    methods:{
+      createPost( event ){
+        axios
+          .post( this.$store.state.backURL + path + this.category +  "?access_token=" + getAuthenticationToken(),
+            { 
+              
+              image: "Nada",
+              title: this.title.trim( ),
+              product_name: this.product_name.trim( ),
+              description: this.description.trim( ),
+              price: this.price.trim(),
+              stock: this.stock,
+              
+              
+              
+              
+
+              },
+              
+            
+          ).then( response => {
+            if( response.status !== 201 ){
+              alert( "Error en la creación del post" )
+            }else{
+              alert( "Post creado correctamente" )
+            }
+          }).catch( error =>{
+            if( error.response.status === 400 ){
+              alert( "Un error ocurrio ");
+            }else{
+              alert( "¡Parece que hubo un error de comunicación con el servidor!" );
+            }
+          });
+        event.preventDefault( );
+        return true;
+      }
+    },
   components: {
     TopMenu,
   },
