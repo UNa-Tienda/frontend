@@ -100,6 +100,8 @@
 <script>
 import TopMenu from "../components/TopMenu.vue";
 import axios from 'axios'
+import {getAuthenticationToken} from '@/dataStorage';
+
 
   const path = '/api/post/add/';
 
@@ -121,14 +123,14 @@ import axios from 'axios'
       }
     },
     beforeCreate( ){
-      const categoryPath = '/categories';
+      const categoryPath = '/api/category/categories';
       axios
         .get( this.$store.state.backURL + categoryPath )
         .then( response => {
           if( response.status !== 200 ){
             alert( "Error en la petición. Intente nuevamente" )
           }else{
-            this.categorys = response.data;
+            this.categories = response.data;
           }
         }).catch( response => {
           alert( "No es posible conectar con el backend en este momento" );
@@ -139,15 +141,18 @@ import axios from 'axios'
     methods:{
       createPost( event ){
         axios
-          .post( this.$store.state.backURL + path + this.categories,
-            {
-    
+          .post( this.$store.state.backURL + path + this.category +  "?access_token=" + getAuthenticationToken(),
+            { 
+              
               image: "Nada",
               title: this.title.trim( ),
               product_name: this.product_name.trim( ),
               description: this.description.trim( ),
               price: this.price.trim(),
               stock: this.stock,
+              
+              
+              
               
 
               },
@@ -163,7 +168,7 @@ import axios from 'axios'
             if( error.response.status === 400 ){
               alert( "Un error ocurrio ");
             }else{
-              alert( "Error en la aplicación" );
+              alert( "¡Parece que hubo un error de comunicación con el servidor!" );
             }
           });
         event.preventDefault( );

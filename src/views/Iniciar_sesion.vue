@@ -21,10 +21,10 @@
             >
               <b-form-input
                 id="input-1"
-                v-model="email"
-                type="email"
+                v-model="username"
+                type="username"
                 required
-                placeholder="usuario@email.com"
+                placeholder="Ingrese su nombre de usuario"
               ></b-form-input>
             </b-form-group>
 
@@ -68,36 +68,44 @@
 
 <script>
 import axios from 'axios'
+import {setAuthenticationToken} from '@/dataStorage';
 
-  const path = "/api/people/login";
+  const path = "/oauth/token";
 
     export default {
         name: "Iniciar_sesion.vue",
         components: {},
         data(){
             return {
-                email: '',
+                username: '',
                 password: ''
             }
         },
         methods: {
             login( event ){
                 axios
-              .post( this.$store.state.backURL + path,
-                {
-        
-                  
-                  email: this.email.trim( ),
-                  password: this.password.trim( ),
-                  
-
-                },  
+                .post( this.$store.state.backURL + path, // URL
+                    { }, // Body
+                    {
+                        headers: {
+                          'Content-Type': 'application/json'
+                        },
+                        params: {
+                            username: this.username,
+                            password: this.password,
+                            grant_type: 'password'
+                        },
+                        auth: {
+                            username: "soft-eng-ii",
+                            password: "secret",
+                        }
+                    }
                 ).then( response => {
                     if( response.status !== 200 ){
                         alert( "Error en la autenticación" );
                     }else{
-                        alert( "Bienvenido Usuario !" );
-                        localStorage.setItem( 'email', this.email );
+                        setAuthenticationToken( response.data.access_token );
+                        this.$router.push( {name: 'home'} );
                     }
                 } ).catch( error => {
                     if( error.response.status === 400 ){
@@ -106,7 +114,6 @@ import axios from 'axios'
                       alert( "¡Parece que hubo un error de comunicación con el servidor!" );
                     }
                 } );
-
                 event.preventDefault();
             }
         }
