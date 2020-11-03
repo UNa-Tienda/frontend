@@ -138,8 +138,9 @@
 <script>
 import TopMenu from "../components/TopMenu.vue";
 import axios from "axios";
+import {getAuthenticationToken} from '@/dataStorage';
 
-const path = "/api/people/";
+const path = "/api/person/profile";
 
 export default {
   name: "Profile.vue",
@@ -156,11 +157,10 @@ export default {
   },
 
   beforeCreate() {
-    const email = localStorage.getItem("email");
     const componente = this;
 
     axios
-      .get(this.$store.state.backURL + path + email)
+      .get(this.$store.state.backURL + path + "?access_token=" + getAuthenticationToken(),)
       .then((response) => {
         if (response.status !== 200) {
           alert("Error en la petición. Intente nuevamente");

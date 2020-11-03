@@ -15,7 +15,6 @@
           <h4 class="middle" id="quantity">{{item.quantity}}</h4>
           <b-button class="btn btn-info"  v-on:click="add"><h4 style="color: azure">+</h4></b-button>
         </b-button-group>
-
       </div>
 
       <div class="col-3" style="align-self: center">

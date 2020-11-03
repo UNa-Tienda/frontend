@@ -35,6 +35,7 @@ import TopMenu from "@/components/TopMenu";
 import Footer from "@/components/Footer";
 import SC_ItemList from "@/components/SC_ItemList";
 import axios from "axios";
+import {getAuthenticationToken} from '@/dataStorage';
 
 export default {
   components: {
@@ -50,21 +51,18 @@ export default {
     }
   },
   beforeMount() {
-    const postPath = "/shopping_cart";
-    const email = localStorage.getItem("email");
+    const postPath = "/api/shopping_cart/items";
+
 
     axios
-        .post(this.$store.state.backURL + postPath,
-            {
-              email: email,
-            },)
+        .get(this.$store.state.backURL + postPath + "?access_token=" + getAuthenticationToken(),)
         .then((response) => {
           if (response.status !== 200) {
             alert("Error en la petición. Intente nuevamente");
           } else {
             let postsResponse = response.data;
             // this.posts = response.data;
-
+            
             postsResponse.forEach((item) => {
                 this.SCitems.push(item)
             });
@@ -72,7 +70,7 @@ export default {
         })
         .catch((response) => {
           console.log(response.status);
-          alert("No es posible conectar con el backend en este momento");
+          alert("No es posible conectar con el backend en este momento"); 
         });
   },
   methods: {

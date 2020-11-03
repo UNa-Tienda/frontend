@@ -120,7 +120,7 @@
 
 <script>
 import axios from "axios";
-const path = "/api/people/add";
+const path = "/api/person/add";
 export default {
   name: "Register",
   data() {
@@ -139,7 +139,7 @@ export default {
     };
   },
   beforeCreate() {
-    const rolesPath = "/roles";
+    const rolesPath = "/api/roles/roles";
     axios
       .get(this.$store.state.backURL + rolesPath)
       .then((response) => {
@@ -160,7 +160,7 @@ export default {
         return;
       }
       axios
-        .post(this.$store.state.backURL + path + this.role, {
+        .post(this.$store.state.backURL + path /*+ this.role Comento esto ya que no esta implementado en el back*/ ,{
           name: this.name.trim(),
           email: this.email.trim(),
           username: this.username.trim(),
