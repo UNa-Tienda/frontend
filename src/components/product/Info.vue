@@ -42,7 +42,10 @@
               </div>
             </div>
             <div>
-              <b-button block variant="danger">Añadir al Carrito</b-button>
+              <b-button
+              block variant="danger"
+              @click="addToCart"
+              >Añadir al Carrito</b-button>
             </div>
           </div>
           <div><Vendedor /></div>
@@ -54,6 +57,7 @@
 
 <script>
 import axios from "axios";
+import {getAuthenticationToken} from '@/dataStorage';
 import Vendedor from "./Vendedor";
 export default {
   name: "Info",
@@ -68,14 +72,15 @@ export default {
       cantidad: 1,
       category_id: null,
       title: "",
+      product:[],
     };
   },
   beforeCreate() {
     const postPath = "/api/post/";
-    const product_id = 1;
+    const product_id = 2;
 
     axios
-      .get(this.$store.state.backURL + postPath + product_id)
+      .get(this.$store.state.backURL + postPath + product_id+ "?access_token=" + getAuthenticationToken())
       .then((response) => {
         if (response.status !== 200) {
           alert("Error en la peticion");
@@ -94,8 +99,13 @@ export default {
       });
   },
   components: {
-    Vendedor,
+    Vendedor,    
   },
+  methods:{
+    addToCart(){
+      this.product.push(this.response.data.name)      
+    }
+  }
 };
 </script>
 

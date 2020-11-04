@@ -8,9 +8,7 @@
             <img v-bind:src="post.image" v-bind:alt="post.image" class="card-img-top" style="width:238px;height:238px;"/>
             <div class="card-body">
               <h5 class="card-title">{{post.title}}</h5>
-              <router-link :to="{ name: 'product' }">
               <a href="#" class="btn btn-primary">${{post.price}}</a>
-              </router-link>
             </div>
           </div>
         </div>
@@ -21,7 +19,6 @@
 
 <script>
 import axios from "axios";
-import {getAuthenticationToken} from '@/dataStorage';
 export default {
   name: "CategorySearch",
   data() {
@@ -34,7 +31,7 @@ export default {
     const postPath = "/api/post/list";
 
     axios
-      .get(this.$store.state.backURL + postPath + "?access_token=" + getAuthenticationToken())
+      .get(this.$store.state.backURL + postPath)
       .then((response) => {
         if (response.status !== 200) {
           alert("Error en la petición. Intente nuevamente");
