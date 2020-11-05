@@ -17,7 +17,7 @@
             <b-form-group
               class="form-group col-12 mb-4"
               id="input-group-1"
-              label="Email"
+              label="Nickname"
             >
               <b-form-input
                 id="input-1"
