@@ -45,6 +45,7 @@
               <b-button
               block variant="danger"
               @click="addToCart"
+              
               >Añadir al Carrito</b-button>
             </div>
           </div>
@@ -64,23 +65,23 @@ export default {
   data() {
     return {
       product_name: "",
-      image: null,
+      image: "",
       description: "",
       total_review: 1,
       price: 10,
       stock: 1,
       cantidad: 1,
-      category_id: null,
+      categoryId: null,
       title: "",
       product:[],
     };
   },
   beforeCreate() {
     const postPath = "/api/post/";
-    const product_id = 2;
+    const product_id = 1;
 
     axios
-      .get(this.$store.state.backURL + postPath + product_id+ "?access_token=" + getAuthenticationToken())
+      .get(this.$store.state.backURL + postPath + product_id + "?access_token=" + getAuthenticationToken())
       .then((response) => {
         if (response.status !== 200) {
           alert("Error en la peticion");
@@ -88,7 +89,7 @@ export default {
           this.description = response.data.description;
           this.stock = response.data.stock;
           this.price = response.data.price;
-          this.category = response.data.category_id.name;
+          this.category = response.data.categoryId.name;
           this.product_name = response.data.product_name;
           this.image = response.data.image;
         }
@@ -101,11 +102,11 @@ export default {
   components: {
     Vendedor,    
   },
-  methods:{
-    addToCart(){
-      this.product.push(this.response.data.name)      
-    }
-  }
+  // methods:{
+  //   addToCart(){
+  //     this.product_id.push(this.response.data)      
+  //   }
+  // }
 };
 </script>
 

@@ -34,7 +34,7 @@ export default {
     const postPath = "/api/post/list";
 
     axios
-      .get(this.$store.state.backURL + postPath + "?access_token=" + getAuthenticationToken())
+      .get(this.$store.state.backURL + postPath + "?access_token=" + getAuthenticationToken(),)
       .then((response) => {
         if (response.status !== 200) {
           alert("Error en la petición. Intente nuevamente");
