@@ -3,12 +3,12 @@
   <div class="border rounded-lg">
     <div class="row">
       <div class="col-3" style="align-self: center">
-        <router-link :to="{ name: 'home' }"><img v-bind:src="item.cartshop_item_post_id.image" style="width: 100%; max-width: 150px"></router-link>
+        <router-link :to="{ name: 'home' }"><img v-bind:src="item.cartshop_item_post.image" style="width: 100%; max-width: 150px"></router-link>
       </div>
 
       <div class="col-6" style="align-self: center">
-        <router-link :to="{ name: 'home' }" style="text-decoration: none!important;"><h3 style="color: white!important;">{{item.cartshop_item_post_id.title}}</h3></router-link>
-        <h4>precio: ${{item.cartshop_item_post_id.price}}</h4>
+        <router-link :to="{ name: 'home' }" style="text-decoration: none!important;"><h3 style="color: white!important;">{{item.cartshop_item_post.title}}</h3></router-link>
+        <h4>precio: ${{item.cartshop_item_post.price}}</h4>
 
         <b-button-group style="align-items: center">
           <b-button class="btn btn-danger" v-on:click="subtract"><h4 style="color: azure">-</h4></b-button>
