@@ -59,6 +59,7 @@
             href=""
             variant="primary"
             pill
+            :to="{name: 'shoppingHistory'}"
             >Historial de Compras</b-button
           >
 
