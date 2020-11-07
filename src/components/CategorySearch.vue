@@ -29,7 +29,6 @@ export default {
   props: ["category", "category_id"],
   beforeCreate() {
     const postPath = "/api/post/list";
-
     axios
       .get(this.$store.state.backURL + postPath)
       .then((response) => {
@@ -39,7 +38,7 @@ export default {
           let postsResponse = response.data;
 
           postsResponse.forEach((post) => {
-            if (post.category_id.id === this.category_id) {
+            if (post.categoryId.id === this.category_id) {
               this.posts.push(post)
             }
           });
