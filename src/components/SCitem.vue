@@ -35,7 +35,7 @@ export default {
       }
     },
     add() {
-      if (this.item.quantity < this.item.cartshop_item_post_id.stock) {
+      if (this.item.quantity < this.item.cartshop_item_post.stock) {
         this.item.quantity++;
       }
     }

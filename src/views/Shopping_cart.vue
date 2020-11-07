@@ -75,6 +75,7 @@ export default {
   },
   methods: {
     deleteItem(id) {
+      console.log("item: "+id);
       this.SCitems = this.SCitems.filter(item => item.id !== id);
     }
   }
