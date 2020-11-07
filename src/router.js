@@ -14,6 +14,8 @@ import Muebles from "./views/Muebles.vue";
 import Accesorios from "./views/Accesorios.vue";
 import Belleza from "./views/Belleza.vue";
 import Post from "./views/Post.vue";
+import ShoppingHistory from "./views/ShoppingHistory.vue"
+// import { component } from "vue/types/umd";
 
 
 Vue.use(Router);
@@ -46,6 +48,11 @@ export default new Router({
       path: "/profile",
       name: "profile",
       component: Profile,
+    },
+    {
+      path: 'shopping-history',
+      name: "shoppingHistory",
+      component: ShoppingHistory
     },
     {
       path: "/shopping_cart",
