@@ -59,11 +59,6 @@ export default {
   },
   beforeCreate() {
     const postPath = "/api/transactions/my-transactions";
-    // axios.get(this.$store.state.backURL + postPath,{
-    //   headers:{
-    //     Authorization: `bearer ${getAuthenticationToken()}`
-    //   }
-    // })
     axios
       .get(this.$store.state.backURL + postPath, {
         headers: {
