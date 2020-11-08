@@ -8,7 +8,7 @@
       <TopMenu />
     </div>
     <div>
-        <ShoppingTable />
+        <SalesTable />
     </div>
     <div>
       <hr>
@@ -20,12 +20,12 @@
 <script>
 import TopMenu from "../components/TopMenu.vue";
 import Footer from "../components/Footer";
-import ShoppingTable from "../components/Histories/ShoppingTable";
+import SalesTable from "../components/Histories/SalesTable";
 export default {
   components: {
     TopMenu,
     Footer,
-    ShoppingTable,
+    SalesTable,
   },
 };
 </script>

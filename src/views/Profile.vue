@@ -70,6 +70,7 @@
             href=""
             variant="primary"
             pill
+            :to="{name: 'salesHistory'}"
             >Historial de Ventas</b-button
           >
         </div>
