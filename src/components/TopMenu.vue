@@ -169,6 +169,7 @@ export default {
     logout() {
       localStorage. removeItem("token-ingesoft");
       this.logged = false;
+      this.$router.push( {name: 'home'} );
     },
     getUsers: function(){
         var urlUsers = 'https://jsonplaceholder.typicode.com/users';
