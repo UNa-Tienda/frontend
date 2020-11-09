@@ -64,7 +64,7 @@
 <script>
 import axios from "axios";
 import Vendedor from "./Vendedor";
-import {getAuthenticationToken} from "@/dataStorage";
+
 
 export default {
   name: "Info",
@@ -87,7 +87,7 @@ export default {
     let productId = this.$route.params.id;
 
     axios
-      .get(this.$store.state.backURL + postPath + productId + "?access_token=" + getAuthenticationToken(),)
+      .get(this.$store.state.backURL + postPath + productId, )
       .then((response) => {
         if (response.status !== 200) {
           alert("Error en la peticion");

@@ -173,6 +173,7 @@ const path = "/api/post/add/";
               alert( "Error en la creación del post" )
             }else{
               alert( "Post creado correctamente" )
+              this.$router.push( {name: 'home'} );
             }
           }).catch( error =>{
             if( error.response.status === 400 ){
