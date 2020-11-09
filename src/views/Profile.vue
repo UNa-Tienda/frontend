@@ -59,6 +59,7 @@
             href=""
             variant="primary"
             pill
+            :to="{name: 'shoppingHistory'}"
             >Historial de Compras</b-button
           >
 
@@ -69,6 +70,7 @@
             href=""
             variant="primary"
             pill
+            :to="{name: 'salesHistory'}"
             >Historial de Ventas</b-button
           >
         </div>

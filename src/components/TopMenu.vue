@@ -167,8 +167,9 @@ export default {
   },
   methods:{
     logout() {
-      localStorage. removeItem("email");
+      localStorage. removeItem("token-ingesoft");
       this.logged = false;
+      this.$router.push( {name: 'home'} );
     },
     getUsers: function(){
         var urlUsers = 'https://jsonplaceholder.typicode.com/users';
@@ -185,7 +186,7 @@ export default {
 
   mounted: function () {
     this.$nextTick(function () {
-      if (localStorage.getItem("email") != null) {
+      if (localStorage.getItem("token-ingesoft") != null) {
         this.logged = true;
       }
     });
