@@ -185,6 +185,7 @@ export default {
             this.location = "";
             this.password = "";
             this.password2 = "";
+            this.$router.push( {name: 'iniciar_sesion'} );
           }
         })
         .catch((error) => {

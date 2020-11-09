@@ -96,7 +96,7 @@ export default {
           this.stock = response.data.stock;
           this.price = response.data.price;
           this.category = response.data.categoryId.name;
-          this.product_name = response.data.product_name;
+          this.productName = response.data.productName;
           this.image = response.data.image;
         }
       })
@@ -110,7 +110,7 @@ export default {
       const path = "/add-carrito";
       axios
         .post(this.$store.state.backURL + path, {
-          productName: this.product_name,
+          productName: this.productName,
           price: this.price,
           stock: this.stock,
         })
@@ -124,7 +124,7 @@ export default {
         .catch((error) => {
           if (error.response.status === 400) {
             alert(
-              'Parece que ya existe un curso con el nombre "' + this.name + '"'
+              'Parece que hubo un error'
             );
           } else {
             console.log(error.message);
