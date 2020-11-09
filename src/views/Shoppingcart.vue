@@ -66,7 +66,7 @@ export default {
 
             postsResponse.forEach((item) => {
                 this.SCitems.push(item)
-                this.total = this.total + item.cartshop_item_post.price * item.quantity;
+                this.total = this.total + item.cartshopItemPost.price * item.quantity;
             });
           }
         })
