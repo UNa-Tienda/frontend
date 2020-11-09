@@ -6,7 +6,7 @@ import Register from "./views/Register";
 import ForgotPassword from "./views/ForgotPassword";
 import Profile from "./views/Profile.vue";
 
-import Shopping_cart from "@/views/Shopping_cart";
+import Shopping_cart from "@/views/Shoppingcart";
 import Product from "./views/Product.vue";
 import Tecnologia from "./views/Tecnologia.vue";
 import Deportes from "./views/Deportes.vue";
@@ -61,7 +61,7 @@ export default new Router({
       component: SalesHistory
     },
     {
-      path: "/shopping_cart",
+      path: "/shopping-cart",
       name: "shopping_cart",
       component: Shopping_cart,
     },
