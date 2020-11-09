@@ -10,7 +10,7 @@
         <div>
           <div class="infogeneral text-left m-3">
             <h3 class="mt-2 mb-4">
-              {{ product_name }}
+              {{ productName }}
             </h3>
             <p class="description text-justify mb-3">
               {{ description }}
@@ -64,12 +64,13 @@
 <script>
 import axios from "axios";
 import Vendedor from "./Vendedor";
-import {getAuthenticationToken} from "@/dataStorage";
+
+
 export default {
   name: "Info",
   data() {
     return {
-      product_name: "",
+      productName: "",
       image: "",
       description: "",
       total_review: 1,
@@ -86,7 +87,7 @@ export default {
     let productId = this.$route.params.id;
 
     axios
-      .get(this.$store.state.backURL + postPath + productId + "?access_token=" + getAuthenticationToken(),)
+      .get(this.$store.state.backURL + postPath + productId, )
       .then((response) => {
         if (response.status !== 200) {
           alert("Error en la peticion");

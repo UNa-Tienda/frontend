@@ -11,11 +11,13 @@
         <router-link :to="{ name: 'product', params: { id: item.cartshopItemPost.id } }" style="text-decoration: none!important;"><h3 style="color: white!important;">{{item.cartshopItemPost.title}}</h3></router-link>
         <h4>precio: ${{item.cartshopItemPost.price}}</h4>
 
+
         <b-button-group style="align-items: center">
           <b-button class="btn btn-danger" v-on:click="subtract"><h4 style="color: azure">-</h4></b-button>
           <h4 class="middle" id="quantity">{{item.quantity}}</h4>
           <b-button class="btn btn-info"  v-on:click="add"><h4 style="color: azure">+</h4></b-button>
         </b-button-group>
+
       </div>
 
       <div class="col-3" style="align-self: center">

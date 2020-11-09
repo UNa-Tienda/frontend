@@ -144,6 +144,20 @@
                   >
                       Cerrar Sesión
                   </b-nav-item>
+
+                  <b-nav-item
+                    class ="text-white ml-1"
+                    v-if="logged"
+                    style="
+                      border: 1px;
+                      border-radius: 16px;
+                      background-color: #42b983;
+                    "
+                  >
+                      <router-link :to="{ name: 'post' }" class="menufontPost" >
+                      Crear Post
+                    </router-link>
+                  </b-nav-item>
                 </b-navbar-nav>
               </b-collapse>
             </b-navbar>
@@ -195,6 +209,10 @@ export default {
 </script>
 
 <style scoped>
+.menufontPost{
+  color: #4c4545 !important;
+  text-decoration: none;
+}
 .menufont {
   color: azure !important;
   text-decoration: none;
@@ -215,7 +233,7 @@ export default {
     flex-direction: row;
     margin-right: 12vw;
     max-width: 200px;
-    width: 17%;
+    width: 18%;
   }
 
   .right-navbar {

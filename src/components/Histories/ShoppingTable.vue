@@ -8,19 +8,19 @@
               <div class="col-sm-5">
                 <img
                   class="imagenCarta card-img mt-2"
-                  v-bind:src="post.post_id.image"
-                  v-bind:alt="post.post_id.image"
+                  v-bind:src="post.postId.image"
+                  v-bind:alt="post.postId.image"
                   
                 />
               </div>
               <div class="col-sm-7">
                 <div class="card-body">
-                  <h5 class="card-title mb-5">Titulo del post : {{ post.post_id.title }}</h5>
+                  <h5 class="card-title mb-5">Titulo del post : {{ post.postId.title }}</h5>
                   <p class="card-text">
-                    Producto : {{ post.post_id.product_name }}<br />
-                    Cantidad : {{ post.post_id.stock }}<br />
-                    Precio por unidad : {{ post.post_id.price }}<br />
-                    Vendedor : {{ post.post_id.sellerId.name}}<br />
+                    Producto : {{ post.postId.productName }}<br />
+                    Cantidad : {{ post.postId.stock }}<br />
+                    Precio por unidad : {{ post.postId.price }}<br />
+                    Vendedor : {{ post.postId.sellerId.name}}<br />
                   </p>
                 </div>
               </div>

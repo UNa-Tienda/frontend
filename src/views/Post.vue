@@ -123,7 +123,7 @@ const path = "/api/post/add/";
         image: null,
         category_id : '',
         title: '',
-        product_name: '',
+        productName: '',
         description: '',
         stock: 1,
         price: '',
@@ -156,7 +156,7 @@ const path = "/api/post/add/";
               
               image: "Nada",
               title: this.title.trim( ),
-              product_name: this.product_name.trim( ),
+              productName: this.product_name.trim( ),
               description: this.description.trim( ),
               price: this.price.trim(),
               stock: this.stock,
@@ -173,6 +173,7 @@ const path = "/api/post/add/";
               alert( "Error en la creación del post" )
             }else{
               alert( "Post creado correctamente" )
+              this.$router.push( {name: 'home'} );
             }
           }).catch( error =>{
             if( error.response.status === 400 ){
