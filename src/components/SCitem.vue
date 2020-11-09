@@ -4,6 +4,7 @@
     <div class="row">
       <div class="col-3" style="align-self: center">
         <router-link :to="{ name: 'home' }"><img v-bind:src="item.cartshop_item_post.image" style="width: 100%; max-width: 150px"></router-link>
+
       </div>
 
       <div class="col-6" style="align-self: center">

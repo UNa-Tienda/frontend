@@ -15,6 +15,7 @@ import Accesorios from "./views/Accesorios.vue";
 import Belleza from "./views/Belleza.vue";
 import Post from "./views/Post.vue";
 import ShoppingHistory from "./views/ShoppingHistory.vue"
+import SalesHistory from "./views/SalesHistory.vue"
 // import { component } from "vue/types/umd";
 
 
@@ -55,6 +56,11 @@ export default new Router({
       component: ShoppingHistory
     },
     {
+      path: '/sales-history',
+      name: "salesHistory",
+      component: SalesHistory
+    },
+    {
       path: "/shopping_cart",
       name: "shopping_cart",
       component: Shopping_cart,
@@ -90,7 +96,7 @@ export default new Router({
       component: Post,
     },
     {
-      path: "/product",
+      path: "/product/:id",
       name: "product",
       component: Product,
     },

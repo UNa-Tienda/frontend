@@ -5,10 +5,19 @@
       <div class="row cardRow">
         <div class="col" v-for="post in posts" :key="post.id">
           <div class="card border-primary" style="width: 16rem">
-            <img v-bind:src="post.image" v-bind:alt="post.image" class="card-img-top" style="width:238px;height:238px;"/>
+            <router-link :to="{ name: 'product', params: { id: post.id } }">
+              <img
+                v-bind:src="post.image"
+                v-bind:alt="post.image"
+                class="card-img-top"
+                style="width:238px;height:238px;"
+              />
+            </router-link>
             <div class="card-body">
-              <h5 class="card-title">{{post.title}}</h5>
-              <a href="#" class="btn btn-primary">${{post.price}}</a>
+              <h5 class="card-title">{{ post.title }}</h5>
+              <router-link :to="{ name: 'product', params: { id: post.id } }">
+                <a href="#" class="btn btn-primary">${{ post.price }}</a>
+              </router-link>
             </div>
           </div>
         </div>
@@ -39,7 +48,7 @@ export default {
 
           postsResponse.forEach((post) => {
             if (post.categoryId.id === this.category_id) {
-              this.posts.push(post)
+              this.posts.push(post);
             }
           });
         }
