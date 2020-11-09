@@ -3,12 +3,12 @@
   <div class="border rounded-lg">
     <div class="row">
       <div class="col-3" style="align-self: center">
-        <router-link :to="{ name: 'home' }"><img v-bind:src="item.cartshopItemPost.image" style="width: 100%; max-width: 150px" alt="photo"></router-link>
+        <router-link :to="{ name: 'product', params: { id: item.cartshopItemPost.id } }"><img v-bind:src="item.cartshopItemPost.image" style="width: 100%; max-width: 150px" alt="photo"></router-link>
 
       </div>
 
       <div class="col-6" style="align-self: center">
-        <router-link :to="{ name: 'home' }" style="text-decoration: none!important;"><h3 style="color: white!important;">{{item.cartshopItemPost.title}}</h3></router-link>
+        <router-link :to="{ name: 'product', params: { id: item.cartshopItemPost.id } }" style="text-decoration: none!important;"><h3 style="color: white!important;">{{item.cartshopItemPost.title}}</h3></router-link>
         <h4>precio: ${{item.cartshopItemPost.price}}</h4>
 
 
