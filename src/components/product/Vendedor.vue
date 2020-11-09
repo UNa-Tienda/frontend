@@ -1,12 +1,56 @@
 <template>
   <div class="vendedor">
-    <img class="imageVendedor" src="../../assets/vendedor.png" alt="vendedor" />
-    <p>Información del vendedor</p>
+    <img v-on:click="showinfo" style="cursor:pointer" class="imageVendedor" src="../../assets/vendedor.png" alt="vendedor" />
+    <p>Informacion del vendedor</p>
+    <div v-if=show>
+    <p>{{name}}</p>
+    <p>{{username}}</p>
+    <p>{{email}}</p>
+    <p>{{location}}</p>
+    </div>
   </div>
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+export default {
+  name: "InfoSeller",
+  data() {
+    return{
+      name:"",
+      username:"",
+      email:"",
+      location:"",
+      show:null  
+    };
+  },
+beforeCreate() {
+    const postPath = "/api/post/";
+    let productId = this.$route.params.id;
+
+    axios
+      .get(this.$store.state.backURL + postPath + productId)
+      .then((response) => {
+        if (response.status !== 200) {
+          alert("Error en la peticion");
+        } else {
+          this.name = response.data.sellerId.name;
+          this.username = response.data.sellerId.username;
+          this.email = response.data.sellerId.email;
+          this.location = response.data.sellerId.location;
+        }
+      })
+      .catch((response) => {
+        console.log(response.status);
+        alert("No es posible conectar con el backend en este momento");
+      });
+},
+methods:{
+    showinfo() {
+    return this.show=true
+    },
+}    
+};
 </script>
 
 <style>
