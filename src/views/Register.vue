@@ -132,7 +132,7 @@ export default {
       password2: "",
       photo: "",
       location: "",
-      paypal_id: "",
+      paypalId: "",
       role: "",
       roles: [],
       response: null,
@@ -167,7 +167,7 @@ export default {
           location: this.location.trim(),
           password: this.password,
           photo: "foto",
-          paypal_id: 0,
+          paypalId: 0,
         })
         .then((response) => {
           if (response.status !== 201) {
