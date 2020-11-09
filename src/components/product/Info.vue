@@ -30,23 +30,28 @@
                 <b-col cols="xs-12 sm-12 auto" md="6">
                   <b-form-spinbutton
                     class="col-12"
-                    id="stock"
+                    id="cantidad"
                     v-model="cantidad"
-                    min="1"
-                    max="10"
+                    :class="{
+                      'is-invalid': cantidad !== '' && cantidad > stock,
+                      'is-valid': cantidad !== '' && cantidad <= stock,
+                    }"
                   ></b-form-spinbutton>
+                  <div class="valid-feedback">
+                    Llevas {{ cantidad }} Unidades
+                  </div>
+                  <div class="invalid-feedback">
+                    No hay mas unidades disponibles, puedes llevar max
+                    {{ stock }} productos
+                  </div>
                 </b-col>
               </b-row>
-              <div class="mt-5 mb-4 text-success">
-                Llevas {{ cantidad }} Unidades
-              </div>
             </div>
+            <br />
             <div>
-              <b-button
-              block variant="danger"
-              @click="addToCart"
-              
-              >Añadir al Carrito</b-button>
+              <b-button block variant="danger" @click="addCarrito"
+                >Añadir al Carrito</b-button
+              >
             </div>
           </div>
           <div><Vendedor /></div>
@@ -58,7 +63,6 @@
 
 <script>
 import axios from "axios";
-import {getAuthenticationToken} from '@/dataStorage';
 import Vendedor from "./Vendedor";
 export default {
   name: "Info",
@@ -73,15 +77,15 @@ export default {
       cantidad: 1,
       categoryId: null,
       title: "",
-      product:[],
+      product: [],
     };
   },
   beforeCreate() {
     const postPath = "/api/post/";
-    const product_id = 1;
+    let productId = this.$route.params.id;
 
     axios
-      .get(this.$store.state.backURL + postPath + product_id + "?access_token=" + getAuthenticationToken())
+      .get(this.$store.state.backURL + postPath + productId)
       .then((response) => {
         if (response.status !== 200) {
           alert("Error en la peticion");
@@ -99,14 +103,39 @@ export default {
         alert("No es posible conectar con el backend en este momento");
       });
   },
-  components: {
-    Vendedor,    
+  methods: {
+    addCarrito(event) {
+      const path = "/add-carrito";
+      axios
+        .post(this.$store.state.backURL + path, {
+          productName: this.product_name,
+          price: this.price,
+          stock: this.stock,
+        })
+        .then((response) => {
+          if (response.status !== 201) {
+            alert("Error en el almacenamiento del producto");
+          } else {
+            alert("el producto se ha añadido correctamente");
+          }
+        })
+        .catch((error) => {
+          if (error.response.status === 400) {
+            alert(
+              'Parece que ya existe un curso con el nombre "' + this.name + '"'
+            );
+          } else {
+            console.log(error.message);
+            alert("Error en la aplicación");
+          }
+        });
+      event.preventDefault();
+      return true;
+    },
   },
-  // methods:{
-  //   addToCart(){
-  //     this.product_id.push(this.response.data)      
-  //   }
-  // }
+  components: {
+    Vendedor,
+  },
 };
 </script>
 

@@ -51,7 +51,7 @@ export default {
     }
   },
   beforeMount() {
-    const postPath = "/api/shopping_cart/items";
+    const postPath = "/api/shopping-cart/items";
 
 
     axios
