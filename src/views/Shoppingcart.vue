@@ -13,9 +13,9 @@
     <div class="col-xs-12 col-sm-8 col-md-6 border rounded-lg" style="background-color: azure">
       <h3 class="col-12 text-center text-primary mt-3 mb-3">Mi carrito de Compras</h3>
 
-      <SC_ItemList style="margin-bottom: 20px" v-bind:items="SCitems"/>
+      <SC_ItemList style="margin-bottom: 20px" v-bind:items="SCitems" v-on:del-item="deleteItem"/>
 
-      
+      <h4>Total a pagar: ${{total}}</h4>
 
       <b-button-group style="margin-bottom: 20px">
         <b-button style="margin-right: 10px">Cancelar</b-button>
@@ -46,7 +46,8 @@ export default {
   data() {
     return {
       email: '',
-      SCitems: []
+      SCitems: [],
+      total: 0
 
     }
   },
@@ -62,9 +63,10 @@ export default {
           } else {
             let postsResponse = response.data;
             // this.posts = response.data;
-            
+
             postsResponse.forEach((item) => {
                 this.SCitems.push(item)
+                this.total = this.total + item.cartshopItemPost.price * item.quantity;
             });
           }
         })
@@ -72,6 +74,30 @@ export default {
           console.log(response.status);
           alert("No es posible conectar con el backend en este momento"); 
         });
+
+  },
+  methods: {
+    deleteItem(id) {
+      const postPath = "/api/shopping-cart/delete-item";
+
+
+      console.log("item: "+id);
+      this.SCitems = this.SCitems.filter(item => item.id !== id);
+
+      axios
+          .delete(this.$store.state.backURL + postPath + "?access_token=" + getAuthenticationToken() + "&id=" + id,)
+          .then((response) => {
+            if (response.status !== 200) {
+              alert("Error en la petición. Intente nuevamente");
+            }
+          })
+          .catch((response) => {
+            console.log(response.status);
+            alert("No es posible conectar con el backend en este momento");
+          });
+
+    },
+
   }
 }
 
