@@ -96,7 +96,7 @@ export default new Router({
       component: Post,
     },
     {
-      path: "/product",
+      path: "/product/:id",
       name: "product",
       component: Product,
     },
