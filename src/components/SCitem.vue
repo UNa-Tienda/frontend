@@ -3,7 +3,7 @@
   <div class="border rounded-lg">
     <div class="row">
       <div class="col-3" style="align-self: center">
-        <router-link :to="{ name: 'home' }"><img src="../assets/radio.png" style="width: 100%; max-width: 150px"></router-link>
+        <router-link :to="{ name: 'home' }"><img alt="" src="../assets/radio.png" style="width: 100%; max-width: 150px"></router-link>
       </div>
       <div class="col-6" style="align-self: center">
         <router-link :to="{ name: 'home' }" style="text-decoration: none!important;"><h3 style="color: white!important;">{{item.cartshop_item_post.title}}</h3></router-link>

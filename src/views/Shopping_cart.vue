@@ -15,7 +15,7 @@
 
       <SC_ItemList style="margin-bottom: 20px" v-bind:items="SCitems"/>
 
-      <!--<h4>Total a pagar: $</h4>-->
+      
 
       <b-button-group style="margin-bottom: 20px">
         <b-button style="margin-right: 10px">Cancelar</b-button>
