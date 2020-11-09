@@ -71,6 +71,8 @@ import {getAuthenticationToken} from '@/dataStorage';
 .tusVentasInfo {
   justify-content: center;
   background-color: rgb(247, 247, 247);
+  min-height: 60vh;
+
 }
 .imagenCarta{
   max-height: 238px;

@@ -26,6 +26,7 @@ export default {
 .cuadro1 {
   background: white;
   min-width: 200px;
+  min-height: 90vh;
 }
 .cuadro2 {
   background: white;
