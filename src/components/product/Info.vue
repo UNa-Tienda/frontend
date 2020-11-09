@@ -10,7 +10,7 @@
         <div>
           <div class="infogeneral text-left m-3">
             <h3 class="mt-2 mb-4">
-              {{ product_name }}
+              {{ productName }}
             </h3>
             <p class="description text-justify mb-3">
               {{ description }}
@@ -64,11 +64,12 @@
 <script>
 import axios from "axios";
 import Vendedor from "./Vendedor";
+
 export default {
   name: "Info",
   data() {
     return {
-      product_name: "",
+      productName: "",
       image: "",
       description: "",
       total_review: 1,
