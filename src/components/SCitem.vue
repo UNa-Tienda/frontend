@@ -13,9 +13,9 @@
 
 
         <b-button-group style="align-items: center">
-          <b-button class="btn btn-danger" v-on:click="subtract"><h4 style="color: azure">-</h4></b-button>
+          <b-button class="btn btn-danger" v-on:click="$emit('subtract',item.id)"><h4 style="color: azure">-</h4></b-button>
           <h4 class="middle" id="quantity">{{item.quantity}}</h4>
-          <b-button class="btn btn-info"  v-on:click="add"><h4 style="color: azure">+</h4></b-button>
+          <b-button class="btn btn-info"  v-on:click="$emit('add',item.id)"><h4 style="color: azure">+</h4></b-button>
         </b-button-group>
 
       </div>
@@ -28,41 +28,11 @@
 </template>
 
 <script>
-import axios from "axios";
-import {getAuthenticationToken} from '@/dataStorage';
 
 export default {
   name: "SCitem",
   props: ["item"],
   methods: {
-    subtract() {
-      if (this.item.quantity > 1) {
-        this.item.quantity--;
-        this.updateQuantity();
-      }
-    },
-    add() {
-      if (this.item.quantity < this.item.cartshopItemPost.stock) {
-        this.item.quantity++;
-        this.updateQuantity();
-      }
-    },
-    updateQuantity(){
-      const postPath = "/api/shopping-cart/update";
-
-      axios
-          .put(this.$store.state.backURL + postPath + "?access_token=" + getAuthenticationToken() + "&id=" + this.item.id + "&quantity=" + this.item.quantity,)
-          .then((response) => {
-            if (response.status !== 200) {
-              alert("Error en la petición. Intente nuevamente");
-            }
-          })
-          .catch((response) => {
-            console.log(response.status);
-            alert("No es posible conectar con el backend en este momento");
-          });
-
-    }
   }
 }
 </script>

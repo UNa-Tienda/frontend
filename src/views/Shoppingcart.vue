@@ -13,7 +13,7 @@
     <div class="col-xs-12 col-sm-8 col-md-6 border rounded-lg" style="background-color: azure">
       <h3 class="col-12 text-center text-primary mt-3 mb-3">Mi carrito de Compras</h3>
 
-      <SC_ItemList style="margin-bottom: 20px" v-bind:items="SCitems" v-on:del-item="deleteItem"/>
+      <SC_ItemList style="margin-bottom: 20px" v-bind:items="SCitems" v-on:del-item="deleteItem" v-on:subtract="subtract" v-on:add="add"/>
 
       <h4>Total a pagar: ${{total}}</h4>
 
@@ -79,10 +79,10 @@ export default {
   methods: {
     deleteItem(id) {
       const postPath = "/api/shopping-cart/delete-item";
-
-
-      console.log("item: "+id);
+      let item3 = this.SCitems.find(item => item.id == id);
       this.SCitems = this.SCitems.filter(item => item.id !== id);
+      console.log(item3);
+      this.total = this.total - item3.cartshopItemPost.price * item3.quantity;
 
       axios
           .delete(this.$store.state.backURL + postPath + "?access_token=" + getAuthenticationToken() + "&id=" + id,)
@@ -97,6 +97,38 @@ export default {
           });
 
     },
+    subtract(id) {
+      let item = this.SCitems.find(item => item.id == id);
+      if (item.quantity > 1) {
+        item.quantity--;
+        this.total = this.total - item.cartshopItemPost.price;
+        this.updateQuantity(id, item.quantity);
+      }
+    },
+    add(id) {
+      let item = this.SCitems.find(item => item.id == id);
+      if (item.quantity < item.cartshopItemPost.stock) {
+        item.quantity++;
+        this.total = this.total + item.cartshopItemPost.price;
+        this.updateQuantity(id, item.quantity);
+      }
+    },
+    updateQuantity(id, quantity){
+      const postPath = "/api/shopping-cart/update";
+
+      axios
+          .put(this.$store.state.backURL + postPath + "?access_token=" + getAuthenticationToken() + "&id=" + id + "&quantity=" + quantity,)
+          .then((response) => {
+            if (response.status !== 200) {
+              alert("Error en la petición. Intente nuevamente");
+            }
+          })
+          .catch((response) => {
+            console.log(response.status);
+            alert("No es posible conectar con el backend en este momento");
+          });
+
+    }
 
   }
 }
