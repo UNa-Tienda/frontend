@@ -83,7 +83,7 @@
                   </b-nav-item>
 
                   <b-nav-item>
-                    <router-link v-show="logged" :to="{ name: 'salesHistory' }" class="menufont"
+                    <router-link v-show="logged" :to="{ name: 'postsHistory' }" class="menufont"
                       >Mis productos</router-link
 
                     >
