@@ -9,9 +9,15 @@
           </router-link>
         </div>
         <div class="forgot-password">
-          <form
-            @submit="submit"
-            class="forgotpass col-xs-12 col-sm-8 col-md-6 col-lg-4 border border-primary rounded-lg"
+          <div class="text-white" v-if="requestSended == 1">
+              <h5>Enviando...</h5>
+            </div>
+            <div class="text-white" v-if="requestSended == 2">
+              <h5>Verifique si en su correo el mensaje que se le envio para
+              restablecer la contraseña.</h5>
+            </div>
+          <div
+            class="forgotpass col-xs-12 col-sm-8 col-md-6 col-lg-4 border border-primary rounded-lg" v-if="requestSended == 0"
           >
             <h2 class="title col-12 text-center text-primary mt-5 mb-5">
               ¿Olvido su contraseña?
@@ -35,7 +41,11 @@
             </div>
 
             <div class="col-12 mb-3">
-              <button class="btn btn-primary col-12 mb-2" type="submit">
+              <button
+                class="btn btn-primary col-12 mb-2"
+                type="submit"
+                @click="update()"
+              >
                 Recuperar Contraseña
               </button>
             </div>
@@ -48,7 +58,7 @@
                 </small>
               </span>
             </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
@@ -56,10 +66,45 @@
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+export default {
+  data: function () {
+    return {
+      email: "",
+      requestSended: 0,
+    };
+  },
+  methods: {
+    update() {
+      console.log(this.requestSended);
+      this.requestSended = 1;
+      console.log(this.requestSended);
+      setTimeout(() => {
+        this.recoverPassword()
+        this.requestSended = 2;
+        console.log(this.requestSended);
+      }, 8000);
+    },
+    recoverPassword() {
+      let path = "/api/person/forgot-password/";
+      axios
+        .post(this.$store.state.backURL + path + this.email)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((response) => {
+          console.log(response.status);
+          alert("No es posible conectar con el backend en este momento");
+        });
+    },
+  },
+};
 </script>
 
 <style>
+body{
+  background: #012433;
+}
 .logoforgot {
   margin-top: 40px;
   height: 80px;
