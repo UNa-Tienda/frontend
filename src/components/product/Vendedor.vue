@@ -1,8 +1,8 @@
 <template>
   <div class="vendedor">
-    <img v-on:click="showinfo" style="cursor:pointer" class="imageVendedor" src="../../assets/vendedor.png" alt="vendedor" />
+    <img @click='sinfo = !sinfo' style="cursor:pointer" class="imageVendedor" src="../../assets/vendedor.png" alt="vendedor" />
     <p>Informacion del vendedor</p>
-    <div v-if=show>
+    <div v-show='sinfo'>
     <p>{{name}}</p>
     <p>{{username}}</p>
     <p>{{email}}</p>
@@ -21,7 +21,7 @@ export default {
       username:"",
       email:"",
       location:"",
-      show:null  
+      sinfo: false  
     };
   },
 beforeCreate() {
@@ -45,12 +45,9 @@ beforeCreate() {
         alert("No es posible conectar con el backend en este momento");
       });
 },
-methods:{
-    showinfo() {
-    return this.show=true
-    },
-}    
+
 };
+
 </script>
 
 <style>
