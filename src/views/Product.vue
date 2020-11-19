@@ -23,12 +23,4 @@ export default {
 .productfondo {
   background: #d1dadd;
 }
-.cuadro1 {
-  background: white;
-  min-width: 200px;
-  min-height: 90vh;
-}
-.cuadro2 {
-  background: white;
-}
 </style>

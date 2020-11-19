@@ -12,6 +12,9 @@
             <h3 class="mt-2 mb-4">
               {{ productName }}
             </h3>
+            <div>
+              <Score :score="totalReview" />
+            </div>
             <p class="description text-justify mb-3">
               {{ description }}
             </p>
@@ -64,7 +67,7 @@
 <script>
 import axios from "axios";
 import Vendedor from "./Vendedor";
-
+import Score from "./Score";
 
 export default {
   name: "Info",
@@ -73,13 +76,13 @@ export default {
       productName: "",
       image: "",
       description: "",
-      total_review: 1,
+      totalReview: 1,
       price: 10,
       stock: 1,
       cantidad: 1,
-      categoryId: null,
       title: "",
       product: [],
+      category: "",
     };
   },
   beforeCreate() {
@@ -87,7 +90,7 @@ export default {
     let productId = this.$route.params.id;
 
     axios
-      .get(this.$store.state.backURL + postPath + productId, )
+      .get(this.$store.state.backURL + postPath + productId)
       .then((response) => {
         if (response.status !== 200) {
           alert("Error en la peticion");
@@ -98,6 +101,7 @@ export default {
           this.category = response.data.categoryId.name;
           this.productName = response.data.productName;
           this.image = response.data.image;
+          this.totalReview = response.data.totalReview;
         }
       })
       .catch((response) => {
@@ -123,9 +127,7 @@ export default {
         })
         .catch((error) => {
           if (error.response.status === 400) {
-            alert(
-              'Parece que hubo un error'
-            );
+            alert("Parece que hubo un error");
           } else {
             console.log(error.message);
             alert("Error en la aplicación");
@@ -137,11 +139,12 @@ export default {
   },
   components: {
     Vendedor,
+    Score,
   },
 };
 </script>
 
-<style>
+<style scoped>
 .cantidad {
   align-content: center;
 }
@@ -152,5 +155,12 @@ export default {
   margin-right: auto;
   max-width: 100%;
   height: auto;
+}
+.cuadro1 {
+  background: white;
+  min-width: 200px;
+}
+.cuadro2 {
+  background: white;
 }
 </style>

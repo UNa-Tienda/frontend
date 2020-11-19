@@ -99,6 +99,6 @@ export default new Router({
       path: "/product/:id",
       name: "product",
       component: Product,
-    },
+    },   
   ],
 });
