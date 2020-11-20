@@ -45,7 +45,6 @@ export default {
   },
   data() {
     return {
-      email: '',
       SCitems: [],
       total: 0
 
