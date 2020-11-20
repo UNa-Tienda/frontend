@@ -47,7 +47,7 @@ export default new Router({
       component: ForgotPassword,
     },
     {
-      path: "/restore/:username",
+      path: "/restore/:token",
       name: "restorePassword",
       component: RecoverPassword,
     },
