@@ -17,6 +17,8 @@ import Post from "./views/Post.vue";
 import ShoppingHistory from "./views/ShoppingHistory.vue"
 import SalesHistory from "./views/SalesHistory.vue"
 import PostsHistory from "./views/PostsHistory.vue"
+import RecoverPassword from "./views/RecoveryPassword.vue"
+
 // import { component } from "vue/types/umd";
 
 
@@ -45,6 +47,11 @@ export default new Router({
       path: "/forgotPassword",
       name: "forgotPassword",
       component: ForgotPassword,
+    },
+    {
+      path: "/restore/:token",
+      name: "restorePassword",
+      component: RecoverPassword,
     },
     {
       path: "/profile",
