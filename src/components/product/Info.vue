@@ -47,10 +47,18 @@
                 </b-col>
               </b-row>
             </div>
+            <h2 class="text-warning">Estado: {{ stateString }}</h2>
+            <br />
             <br />
             <div>
               <b-button block variant="danger" @click="addCarrito"
                 >Añadir al Carrito</b-button
+              >
+            </div>
+            <br />
+            <div v-if="this.mine">
+              <b-button block variant="danger" @click="deletePost"
+                >Eliminar Post</b-button
               >
             </div>
           </div>
@@ -63,7 +71,9 @@
 
 <script>
 import axios from "axios";
+import { mapState } from 'vuex';
 import Vendedor from "./Vendedor";
+import {getAuthenticationToken} from '@/dataStorage';
 
 
 export default {
@@ -77,11 +87,15 @@ export default {
       price: 10,
       stock: 1,
       cantidad: 1,
+      state:true,
+      stateString:"",
+      mine:true,
       categoryId: null,
       title: "",
       product: [],
     };
   },
+
   beforeCreate() {
     const postPath = "/api/post/";
     let productId = this.$route.params.id;
@@ -98,12 +112,35 @@ export default {
           this.category = response.data.categoryId.name;
           this.productName = response.data.productName;
           this.image = response.data.image;
+          this.state = response.data.state;
+          if(this.state){
+            this.stateString = "Activo";
+          }else{
+            this.stateString = "Inactivo";
+          }
+          this.mine = false;
         }
       })
       .catch((response) => {
         console.log(response.status);
         alert("No es posible conectar con el backend en este momento");
       });
+
+  },
+
+  beforeUpdate(){
+    if(this.logged){
+            const minePath = "/api/post/mine/";
+            axios
+              .get( this.$store.state.backURL + minePath + this.$route.params.id + "?access_token=" + getAuthenticationToken(),)
+              .then((response) => {
+                if( response.status === 202 ){
+                  this.mine = true;
+
+                }
+              });
+              
+          }
   },
   methods: {
     addCarrito(event) {
@@ -134,6 +171,34 @@ export default {
       event.preventDefault();
       return true;
     },
+    deletePost( event ){
+
+      const deletePath = "/api/post/delete/";
+
+      if(this.state === false){
+        alert( "Este producto ya esta deshabilitado !" )
+      }else{
+        axios
+        .delete( this.$store.state.backURL + deletePath + this.$route.params.id + "?access_token=" + getAuthenticationToken(),)
+        .then( response => {
+          if( response.status === 200 ){
+            alert( "Post eliminado correctamente" )
+            this.$router.push( {name: 'home'} );
+          }else if(response.status === 202){
+            alert( "Post deshabilitado correctamente" )
+            this.$router.push( {name: 'home'} );
+          }else{
+            alert( "Parece que hubo un error" );
+          }
+        });
+      event.preventDefault();
+      return true;
+      }
+    
+    },
+  },
+  computed:{
+      ...mapState(['logged']),
   },
   components: {
     Vendedor,
