@@ -8,7 +8,7 @@
         </router-link>
         <div id="login" class="login">
           <b-form
-            @submit="login"
+            @submit="validate"
             class="datosIS col-xs-12 col-sm-8 col-md-6 col-lg-4 border border-primary rounded-lg"
           >
             <h2 class="col-12 text-center text-primary mt-3 mb-3">Login</h2>
@@ -68,8 +68,7 @@
 
 <script>
 import axios from 'axios'
-import {setAuthenticationToken} from '@/dataStorage';
-
+import {mapMutations} from 'vuex';
   const path = "/oauth/token";
 
     export default {
@@ -82,7 +81,8 @@ import {setAuthenticationToken} from '@/dataStorage';
             }
         },
         methods: {
-            login( event ){
+            ...mapMutations(['login']),
+            validate( event ){
                 axios
                 .post( this.$store.state.backURL + path, // URL
                     { }, // Body
@@ -104,7 +104,7 @@ import {setAuthenticationToken} from '@/dataStorage';
                     if( response.status !== 200 ){
                         alert( "Error en la autenticación" );
                     }else{
-                        setAuthenticationToken( response.data.access_token );
+                        this.login(response.data.access_token);
                         this.$router.push( {name: 'home'} );
                     }
                 } ).catch( error => {
@@ -116,13 +116,14 @@ import {setAuthenticationToken} from '@/dataStorage';
                 } );
                 event.preventDefault();
             }
-        }
+        },
     }
 </script>
 
 <style>
 .containerExternoIS {
   background: #012433;
+  height:100%;
 }
 .login {
   display: flex;

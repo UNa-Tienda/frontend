@@ -47,10 +47,18 @@
                 </b-col>
               </b-row>
             </div>
+            <h2 class="text-warning">Estado: {{ stateString }}</h2>
+            <br />
             <br />
             <div>
               <b-button block variant="danger" @click="addCarrito"
                 >Añadir al Carrito</b-button
+              >
+            </div>
+            <br />
+            <div v-if="this.mine">
+              <b-button block variant="danger" @click="deletePost"
+                >Eliminar Post</b-button
               >
             </div>
           </div>
@@ -64,8 +72,11 @@
 
 <script>
 import axios from "axios";
+import { mapState } from 'vuex';
 import Vendedor from "./Vendedor";
+import {getAuthenticationToken} from '@/dataStorage';
 import RecommendedItemList from "@/components/product/RecommendedItemList";
+
 
 
 export default {
@@ -74,6 +85,9 @@ export default {
     return {
       total_review: 1,
       cantidad: 1,
+      state:true,
+      stateString:"",
+      mine:true,
       product: {
         description: "",
         stock: 0,
@@ -84,6 +98,7 @@ export default {
       }
     };
   },
+
   beforeCreate() {
     const postPath = "/api/post/";
     let productId = this.$route.params.id;
@@ -102,6 +117,13 @@ export default {
             this.$set(this.product,'category_id',response.data.categoryId.id);
             this.$set(this.product,'productName',response.data.productName);
             this.$set(this.product,'image',response.data.image);
+            this.state = response.data.state;
+            if(this.state){
+              this.stateString = "Activo";
+            }else{
+              this.stateString = "Inactivo";
+            }
+            this.mine = false;
 
           }
         })
@@ -110,6 +132,21 @@ export default {
           alert("No es posible conectar con el backend en este momento");
         });
     },
+     beforeUpdate(){
+    if(this.logged){
+            const minePath = "/api/post/mine/";
+            axios
+              .get( this.$store.state.backURL + minePath + this.$route.params.id + "?access_token=" + getAuthenticationToken(),)
+              .then((response) => {
+                if( response.status === 202 ){
+                  this.mine = true;
+
+                }
+              });
+              
+          }
+  },
+
   methods: {
     addCarrito(event) {
       const path = "/add-carrito";
@@ -139,6 +176,34 @@ export default {
       event.preventDefault();
       return true;
     },
+    deletePost( event ){
+
+      const deletePath = "/api/post/delete/";
+
+      if(this.state === false){
+        alert( "Este producto ya esta deshabilitado !" )
+      }else{
+        axios
+        .delete( this.$store.state.backURL + deletePath + this.$route.params.id + "?access_token=" + getAuthenticationToken(),)
+        .then( response => {
+          if( response.status === 200 ){
+            alert( "Post eliminado correctamente" )
+            this.$router.push( {name: 'home'} );
+          }else if(response.status === 202){
+            alert( "Post deshabilitado correctamente" )
+            this.$router.push( {name: 'home'} );
+          }else{
+            alert( "Parece que hubo un error" );
+          }
+        });
+      event.preventDefault();
+      return true;
+      }
+    
+    },
+  },
+  computed:{
+      ...mapState(['logged']),
   },
   components: {
     Vendedor,
