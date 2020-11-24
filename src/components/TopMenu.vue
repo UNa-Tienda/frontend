@@ -95,7 +95,7 @@
                   <b-nav-item>
                     <router-link
                       v-show="logged"
-                      :to="{ name: 'salesHistory' }"
+                      :to="{ name: 'postsHistory' }"
                       class="menufont"
                       >Mis productos</router-link
                     >
@@ -150,7 +150,7 @@
                   <b-nav-item
                     class="text-white"
                     v-if="logged"
-                    v-on:click="logout"
+                    v-on:click="logout2"
                     style="
                       border: 1px;
                       border-radius: 16px;
@@ -186,19 +186,23 @@
 
 <script>
 import axios from "axios";
+import { mapState } from "vuex";
+import { mapMutations } from "vuex";
 export default {
   name: "TopMenu",
   data: function() {
     return {
       lists: [],
       name: "",
-      logged: false,
     };
   },
+  beforeCreate() {
+    this.$store.commit("initialiseLogged");
+  },
   methods: {
-    logout() {
-      localStorage.removeItem("token-ingesoft");
-      this.logged = false;
+    ...mapMutations(["logout"]),
+    logout2() {
+      this.logout();
       this.$router.push({ name: "home" });
     },
     getUsers: function() {
@@ -209,19 +213,12 @@ export default {
     },
   },
   computed: {
+    ...mapState(["logged"]),
     search: function() {
       return this.lists.filter((item) =>
         item.name.toLowerCase().includes(this.name.toLowerCase())
       );
     },
-  },
-
-  mounted: function() {
-    this.$nextTick(function() {
-      if (localStorage.getItem("token-ingesoft") != null) {
-        this.logged = true;
-      }
-    });
   },
 };
 </script>
