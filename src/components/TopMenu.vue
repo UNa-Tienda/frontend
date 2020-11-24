@@ -17,10 +17,13 @@
 
           <b-col class="col-8 col-sm-9" align-self="center">
             <b-input-group class="sm">
-            <b-form-input v-model="name" placeholder="Buscar productos..."></b-form-input>
-            <b-input-group-append>
-            <b-button v-on:click="getUsers" variant="">Buscar</b-button>
-            </b-input-group-append>
+              <b-form-input
+                v-model="name"
+                placeholder="Buscar productos..."
+              ></b-form-input>
+              <b-input-group-append>
+                <b-button v-on:click="getUsers" variant="">Buscar</b-button>
+              </b-input-group-append>
             </b-input-group>
           </b-col>
 
@@ -38,11 +41,15 @@
           <!-- Segunda fila de items -->
 
           <b-col class="col-lg-12">
-
             <b-list-group>
-            <b-list-group-item class="list-order" v-for="item in search" href="#" :key="item">
-              {{ item.name }}
-            </b-list-group-item>
+              <b-list-group-item
+                class="list-order"
+                v-for="item in search"
+                href="#"
+                :key="item"
+              >
+                {{ item.name }}
+              </b-list-group-item>
             </b-list-group>
 
             <b-navbar toggleable="lg" sticky>
@@ -77,20 +84,28 @@
                   </b-nav-item-dropdown>
 
                   <b-nav-item>
-                    <router-link v-show="logged" :to="{ name: 'profile' }" class="menufont"
+                    <router-link
+                      v-show="logged"
+                      :to="{ name: 'profile' }"
+                      class="menufont"
                       >Perfil</router-link
                     >
                   </b-nav-item>
 
                   <b-nav-item>
-                    <router-link v-show="logged" :to="{ name: 'postsHistory' }" class="menufont"
+                    <router-link
+                      v-show="logged"
+                      :to="{ name: 'postsHistory' }"
+                      class="menufont"
                       >Mis productos</router-link
-
                     >
                   </b-nav-item>
 
                   <b-nav-item>
-                    <router-link v-show="logged" :to="{ name: 'shoppingHistory' }" class="menufont"
+                    <router-link
+                      v-show="logged"
+                      :to="{ name: 'shoppingHistory' }"
+                      class="menufont"
                       >Historial</router-link
                     >
                   </b-nav-item>
@@ -133,7 +148,7 @@
                   </b-nav-item>
 
                   <b-nav-item
-                    class ="text-white"
+                    class="text-white"
                     v-if="logged"
                     v-on:click="logout2"
                     style="
@@ -143,11 +158,11 @@
                       color: #000000 !important;
                     "
                   >
-                      Cerrar Sesión
+                    Cerrar Sesión
                   </b-nav-item>
 
                   <b-nav-item
-                    class ="text-white ml-1"
+                    class="text-white ml-1"
                     v-if="logged"
                     style="
                       border: 1px;
@@ -155,7 +170,7 @@
                       background-color: #42b983;
                     "
                   >
-                      <router-link :to="{ name: 'post' }" class="menufontPost" >
+                    <router-link :to="{ name: 'post' }" class="menufontPost">
                       Crear Post
                     </router-link>
                   </b-nav-item>
@@ -170,42 +185,46 @@
 </template>
 
 <script>
-import axios from 'axios'
-import {mapState} from 'vuex';
-import {mapMutations} from 'vuex';
+import axios from "axios";
+import { mapState } from "vuex";
+import { mapMutations } from "vuex";
 export default {
   name: "TopMenu",
-  data: function(){
-    return{
-      lists:[],
-      name:'' ,
-    }
+  data: function() {
+    return {
+      lists: [],
+      name: "",
+    };
   },
-  beforeCreate() { this.$store.commit('initialiseLogged');},
-  methods:{
-    ...mapMutations(['logout']),
+  beforeCreate() {
+    this.$store.commit("initialiseLogged");
+  },
+  methods: {
+    ...mapMutations(["logout"]),
     logout2() {
       this.logout();
-      this.$router.push( {name: 'home'} );
+      this.$router.push({ name: "home" });
     },
-    getUsers: function(){
-        var urlUsers = 'https://jsonplaceholder.typicode.com/users';
-        axios.get(urlUsers).then(response => {
-        this.lists=response.data
+    getUsers: function() {
+      var urlUsers = "https://jsonplaceholder.typicode.com/users";
+      axios.get(urlUsers).then((response) => {
+        this.lists = response.data;
       });
-    }
+    },
   },
-  computed:{
-      ...mapState(['logged']),
-      search: function(){
-        return this.lists.filter((item) => item.name.toLowerCase().includes(this.name.toLowerCase()));
-      }
+  computed: {
+    ...mapState(["logged"]),
+    search: function() {
+      return this.lists.filter((item) =>
+        item.name.toLowerCase().includes(this.name.toLowerCase())
+      );
+    },
   },
 };
 </script>
 
 <style scoped>
-.menufontPost{
+.menufontPost {
   color: #4c4545 !important;
   text-decoration: none;
 }
@@ -241,9 +260,8 @@ export default {
   }
 }
 
-.list-order{
+.list-order {
   position: relative;
   width: 40%;
 }
-
 </style>
