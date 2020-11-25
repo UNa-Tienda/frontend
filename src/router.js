@@ -16,6 +16,9 @@ import Belleza from "./views/Belleza.vue";
 import Post from "./views/Post.vue";
 import ShoppingHistory from "./views/ShoppingHistory.vue"
 import SalesHistory from "./views/SalesHistory.vue"
+import PostsHistory from "./views/PostsHistory.vue"
+import RecoverPassword from "./views/RecoveryPassword.vue"
+
 // import { component } from "vue/types/umd";
 
 
@@ -46,6 +49,11 @@ export default new Router({
       component: ForgotPassword,
     },
     {
+      path: "/restore/:token",
+      name: "restorePassword",
+      component: RecoverPassword,
+    },
+    {
       path: "/profile",
       name: "profile",
       component: Profile,
@@ -59,6 +67,11 @@ export default new Router({
       path: '/sales-history',
       name: "salesHistory",
       component: SalesHistory
+    },
+    {
+      path: '/posts-history',
+      name: "postsHistory",
+      component: PostsHistory
     },
     {
       path: "/shopping-cart",
@@ -99,6 +112,6 @@ export default new Router({
       path: "/product/:id",
       name: "product",
       component: Product,
-    },
+    },   
   ],
 });
