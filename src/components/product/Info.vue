@@ -97,7 +97,8 @@ export default {
         category: "",
         productName: "",
         image: "",
-      },
+        id: 0
+      }
     };
   },
 
@@ -155,13 +156,9 @@ export default {
 
   methods: {
     addCarrito(event) {
-      const path = "/add-carrito";
+      const path = "/api/shopping-cart/add";
       axios
-        .post(this.$store.state.backURL + path, {
-          productName: this.product.productName,
-          price: this.product.price,
-          stock: this.product.stock,
-        })
+        .post(this.$store.state.backURL + path + "?access_token=" + getAuthenticationToken() + "&postId=" + this.product.id + "&quantity=" + this.cantidad,)
         .then((response) => {
           if (response.status !== 201) {
             alert("Error en el almacenamiento del producto");

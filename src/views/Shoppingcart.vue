@@ -19,7 +19,7 @@
 
       <b-button-group style="margin-bottom: 20px">
         <b-button style="margin-right: 10px">Cancelar</b-button>
-        <b-button variant="success">Confirmar compra</b-button>
+        <b-button variant="success" @click="buySC">Confirmar compra</b-button>
       </b-button-group>
     </div>
   </div>
@@ -127,7 +127,32 @@ export default {
             alert("No es posible conectar con el backend en este momento");
           });
 
-    }
+    },
+    buySC(event) {
+      const path = "/api/transactions/buy";
+      axios
+          .post(this.$store.state.backURL + path + "?access_token=" + getAuthenticationToken(),)
+          .then((response) => {
+            if (response.status !== 201) {
+              alert("Error en el almacenamiento del producto");
+            } else {
+              alert("se ha realizado la transacción exitosamente");
+            }
+          })
+          .catch((error) => {
+            if (error.response.status === 400) {
+              alert(
+                  'Parece que hubo un error'
+              );
+            } else {
+              console.log(error.message);
+              alert("Error en la aplicación");
+            }
+          });
+      event.preventDefault();
+
+      this.SCitems = null;
+    },
 
   }
 }

@@ -12,7 +12,7 @@
       class="w3-main w3-content w3-padding"
       style="max-width:1200px;margin-top:50px"
     >
-      <div>
+      <div>     
         <b-carousel
           id="carousel-1"
           v-model="slide"
@@ -87,6 +87,7 @@ import TopMenu from "../components/TopMenu.vue";
 import Category from "../components/Category.vue";
 import Footer from "../components/Footer";
 export default {
+  
   data() {
     return {
       slide: 0,
@@ -98,7 +99,5 @@ export default {
     Category,
     Footer,
   },
-};
+}
 </script>
-
-

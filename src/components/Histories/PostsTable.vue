@@ -24,6 +24,7 @@
                     Cantidad : {{ post.stock }}<br />
                     Precio por unidad : {{ post.price }}<br />
                   </p>
+                  <button v-if="post.state" class="button">Aplicar cupon</button>
                 </div>
               </div>
             </div>
@@ -47,6 +48,7 @@ import {getAuthenticationToken} from '@/dataStorage';
       postsCreated: [],
     };
   },
+
   beforeCreate() {
     axios
       .get(this.$store.state.backURL + path + "?access_token=" + getAuthenticationToken(), {
@@ -66,6 +68,7 @@ import {getAuthenticationToken} from '@/dataStorage';
         alert("No es posible conectar con el backend en este momento");
       });
   },
+  
 };
 </script>
 
@@ -81,6 +84,19 @@ import {getAuthenticationToken} from '@/dataStorage';
   max-width: 238px;
   size:auto;
 }
-
+.button {
+  display: inline-block;
+  padding: 5px 12px;
+  font-size: 24px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: rgb(245, 239, 241);
+  background-color: #24c7d3;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+}
 
 </style>
