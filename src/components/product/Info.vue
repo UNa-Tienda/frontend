@@ -159,10 +159,10 @@
 <script>
 import axios from "axios";
 import { mapState } from "vuex";
-import Vendedor from "./Vendedor";
-import Score from "./Score";
+import Vendedor from "./Vendedor.vue";
+import Score from "./Score.vue";
 import { getAuthenticationToken } from "@/dataStorage";
-import RecommendedItemList from "@/components/product/RecommendedItemList";
+import RecommendedItemList from "@/components/product/RecommendedItemList.vue";
 
 export default {
   name: "Info",
@@ -181,7 +181,8 @@ export default {
         productName: "",
         image: "",
         title: "",
-      },
+        id: 0
+      }
     };
   },
 
@@ -251,13 +252,9 @@ export default {
       this.$refs["modal-1"].toggle("#editar");
     },
     addCarrito(event) {
-      const path = "/add-carrito";
+      const path = "/api/shopping-cart/add";
       axios
-        .post(this.$store.state.backURL + path, {
-          productName: this.product.productName,
-          price: this.product.price,
-          stock: this.product.stock,
-        })
+        .post(this.$store.state.backURL + path + "?access_token=" + getAuthenticationToken() + "&postId=" + this.product.id + "&quantity=" + this.cantidad,)
         .then((response) => {
           if (response.status !== 201) {
             alert("Error en el almacenamiento del producto");

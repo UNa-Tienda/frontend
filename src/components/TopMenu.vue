@@ -15,18 +15,24 @@
         <b-row>
           <!-- Primera fila de items -->
 
-          <b-col class="col-8 col-sm-9" align-self="center">
-            <b-input-group class="sm">
-              <b-form-input
-                v-model="name"
-                placeholder="Buscar productos..."
-              ></b-form-input>
-              <b-input-group-append>
-                <b-button v-on:click="getUsers" variant="">Buscar</b-button>
-              </b-input-group-append>
-            </b-input-group>
-          </b-col>
 
+          <b-col  class="col-8 col-sm-9" align-self="center">
+            <!-- <b-input-group class="sm">-->
+              <autocomplete
+              z-index=1250  
+              :search="search"
+              placeholder="Buscar productos..."
+              aria-label="Buscar productos..."
+              :get-result-value="getResultValue"
+              @submit="handleSubmit">
+              </autocomplete> 
+            <!-- <b-form-input v-model="name" placeholder="Buscar productos..."></b-form-input> -->
+           <!--  <b-input-group-append>
+            <b-button v-on:click="getUsers" variant="">Buscar</b-button>
+            </b-input-group-append>
+            </b-input-group> --> 
+
+          </b-col>
           <b-col class="col-1 col-sm-1" align-self="center">
             <div>
               <router-link :to="{ name: 'shopping_cart' }"
@@ -41,16 +47,6 @@
           <!-- Segunda fila de items -->
 
           <b-col class="col-lg-12">
-            <b-list-group>
-              <b-list-group-item
-                class="list-order"
-                v-for="item in search"
-                href="#"
-                :key="item"
-              >
-                {{ item.name }}
-              </b-list-group-item>
-            </b-list-group>
 
             <b-navbar toggleable="lg" sticky>
               <b-navbar-toggle
@@ -185,17 +181,26 @@
 </template>
 
 <script>
-import axios from "axios";
-import { mapState } from "vuex";
-import { mapMutations } from "vuex";
-export default {
+
+import axios from 'axios'
+import {mapState} from 'vuex';
+import {mapMutations} from 'vuex';
+import Autocomplete from '@trevoreyre/autocomplete-vue'
+import '@trevoreyre/autocomplete-vue/dist/style.css'
+
+ 
+
+export default({
   name: "TopMenu",
-  data: function() {
-    return {
-      lists: [],
-      name: "",
-    };
+   components: {
+    Autocomplete
   },
+  data: function(){  
+      
+    return{
+      lists:[]
+    };
+  }, 
   beforeCreate() {
     this.$store.commit("initialiseLogged");
   },
@@ -205,25 +210,84 @@ export default {
       this.logout();
       this.$router.push({ name: "home" });
     },
-    getUsers: function() {
-      var urlUsers = "https://jsonplaceholder.typicode.com/users";
-      axios.get(urlUsers).then((response) => {
-        this.lists = response.data;
-      });
+    
+     search(input) {
+       //Arreglo temporal para mostrar informacion en la busqueda
+       //Se arreglara apenas se cree el servicio en el api
+       let lists=[
+         'producto1',
+         'producto2',
+         'producto3',
+         'producto4',
+         'producto5',
+         'producto6',
+         'producto7',
+         'producto8',
+         'producto9',
+         'producto10',
+         'producto11',
+         'producto12',
+         'producto13'
+       ]
+    /*  const postPath = "/api/post/list";
+     axios
+     .get(this.$store.state.backURL + postPath,)
+     .then((response)=>{
+       if(response.status !==200) {
+         alert("Error en la peticion")
+       } else{
+         let Listsresponse = response.data;
+         Listsresponse.forEach((post) => {
+           this.lists.push(post)
+           console.log(this.lists)
+         });
+       }
+     })  */
+    
+    if (input.length < 3) { return [] }
+      return lists.filter(product => {
+        return product.toLowerCase().startsWith(input.toLowerCase())
+      }) 
+    },    
+    getResultValue(result) {
+      return result
     },
+    handleSubmit(result) {
+    const postPath = "/api/post/list";
+     axios
+     .get(this.$store.state.backURL + postPath,)
+     .then((response)=>{
+       if(response.status !==200) {
+         alert("Error en la peticion")
+       } else{
+         let Listsresponse = response.data;
+         Listsresponse.forEach((post) => {
+            if (post.productName === result) {
+             window.open('http://localhost:8080/product/' + post.id )
+            } 
+            
+         });
+       }
+     })
+    
+    
+    },  
   },
-  computed: {
-    ...mapState(["logged"]),
-    search: function() {
-      return this.lists.filter((item) =>
-        item.name.toLowerCase().includes(this.name.toLowerCase())
-      );
-    },
+  computed:{
+      ...mapState(['logged']),
   },
-};
+  mounted: function () {
+    this.$nextTick(function () {
+      if (localStorage.getItem("token-ingesoft") != null) {
+        this.logged = true;
+      }
+    });
+  }
+})
 </script>
 
 <style scoped>
+
 .menufontPost {
   color: #4c4545 !important;
   text-decoration: none;
@@ -231,6 +295,7 @@ export default {
 .menufont {
   color: azure !important;
   text-decoration: none;
+  z-index: -1;
 }
 
 .menu {
@@ -251,6 +316,7 @@ export default {
     width: 18%;
   }
 
+
   .right-navbar {
     justify-content: space-between;
     margin-left: 1%;
@@ -264,4 +330,12 @@ export default {
   position: relative;
   width: 40%;
 }
+
+.autocomplete{
+  z-index: 1250 !important;
+}
+.autocomplete-result-list{
+  z-index: 1250 !important;
+}
+
 </style>
