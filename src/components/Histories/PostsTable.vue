@@ -24,7 +24,7 @@
                     Cantidad : {{ post.stock }}<br />
                     Precio por unidad : {{ post.price }}<br />
                   </p>
-                  <button v-if="post.state" class="button" :onclik:>Aplicar cupon</button>
+                  <button v-if="post.state" class="button">Aplicar cupon</button>
                 </div>
               </div>
             </div>
