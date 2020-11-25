@@ -76,10 +76,10 @@
 <script>
 import axios from "axios";
 import { mapState } from "vuex";
-import Vendedor from "./Vendedor";
-import Score from "./Score";
+import Vendedor from "./Vendedor.vue";
+import Score from "./Score.vue";
 import { getAuthenticationToken } from "@/dataStorage";
-import RecommendedItemList from "@/components/product/RecommendedItemList";
+import RecommendedItemList from "@/components/product/RecommendedItemList.vue";
 
 export default {
   name: "Info",
