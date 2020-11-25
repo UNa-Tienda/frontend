@@ -15,6 +15,7 @@
         <b-row>
           <!-- Primera fila de items -->
 
+
           <b-col  class="col-8 col-sm-9" align-self="center">
             <!-- <b-input-group class="sm">-->
               <autocomplete
@@ -30,6 +31,7 @@
             <b-button v-on:click="getUsers" variant="">Buscar</b-button>
             </b-input-group-append>
             </b-input-group> --> 
+
           </b-col>
           <b-col class="col-1 col-sm-1" align-self="center">
             <div>
@@ -78,20 +80,28 @@
                   </b-nav-item-dropdown>
 
                   <b-nav-item>
-                    <router-link v-show="logged" :to="{ name: 'profile' }" class="menufont"
+                    <router-link
+                      v-show="logged"
+                      :to="{ name: 'profile' }"
+                      class="menufont"
                       >Perfil</router-link
                     >
                   </b-nav-item>
 
                   <b-nav-item>
-                    <router-link v-show="logged" :to="{ name: 'postsHistory' }" class="menufont"
+                    <router-link
+                      v-show="logged"
+                      :to="{ name: 'postsHistory' }"
+                      class="menufont"
                       >Mis productos</router-link
-
                     >
                   </b-nav-item>
 
                   <b-nav-item>
-                    <router-link v-show="logged" :to="{ name: 'shoppingHistory' }" class="menufont"
+                    <router-link
+                      v-show="logged"
+                      :to="{ name: 'shoppingHistory' }"
+                      class="menufont"
                       >Historial</router-link
                     >
                   </b-nav-item>
@@ -134,7 +144,7 @@
                   </b-nav-item>
 
                   <b-nav-item
-                    class ="text-white"
+                    class="text-white"
                     v-if="logged"
                     v-on:click="logout2"
                     style="
@@ -144,11 +154,11 @@
                       color: #000000 !important;
                     "
                   >
-                      Cerrar Sesión
+                    Cerrar Sesión
                   </b-nav-item>
 
                   <b-nav-item
-                    class ="text-white ml-1"
+                    class="text-white ml-1"
                     v-if="logged"
                     style="
                       border: 1px;
@@ -156,7 +166,7 @@
                       background-color: #42b983;
                     "
                   >
-                      <router-link :to="{ name: 'post' }" class="menufontPost" >
+                    <router-link :to="{ name: 'post' }" class="menufontPost">
                       Crear Post
                     </router-link>
                   </b-nav-item>
@@ -171,6 +181,7 @@
 </template>
 
 <script>
+
 import axios from 'axios'
 import {mapState} from 'vuex';
 import {mapMutations} from 'vuex';
@@ -189,14 +200,17 @@ export default({
     return{
       lists:[]
     };
+
+  beforeCreate() {
+    this.$store.commit("initialiseLogged");
   },
-  beforeCreate() { this.$store.commit('initialiseLogged');},
-  methods:{
-    ...mapMutations(['logout']),
+  methods: {
+    ...mapMutations(["logout"]),
     logout2() {
       this.logout();
-      this.$router.push( {name: 'home'} );
+      this.$router.push({ name: "home" });
     },
+    
      search(input) {
        //Arreglo temporal para mostrar informacion en la busqueda
        //Se arreglara apenas se cree el servicio en el api
@@ -272,14 +286,11 @@ export default({
         this.logged = true;
       }
     });
-  },
-  })
-
 </script>
 
 <style scoped>
-/* @import url(https://cdn.syncfusion.com/ej2/material.css); */
-.menufontPost{
+
+.menufontPost {
   color: #4c4545 !important;
   text-decoration: none;
 }
@@ -317,14 +328,16 @@ export default({
   }
 }
 
-.list-order{
+.list-order {
   position: relative;
   width: 40%;
 }
+
 .autocomplete{
-  z-index: 1250;
+  z-index: 1250 !important;
 }
 .autocomplete-result-list{
-  z-index: 1250;
+  z-index: 1250 !important;
 }
+
 </style>

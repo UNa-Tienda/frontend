@@ -12,6 +12,9 @@
                 class="card-img-top"
                 style="width:238px;height:238px;"
               />
+              <label for="radio2" class="puntaje">
+                ★ {{ post.totalReview }}</label
+              >
             </router-link>
             <div class="card-body">
               <h5 class="card-title">{{ post.title }}</h5>
@@ -70,5 +73,22 @@ export default {
   margin-top: 1rem;
   margin-left: auto;
   margin-right: auto;
+}
+.card-img-top {
+  position: relative;
+  display: inline-block;
+}
+.card-img-top:hover {
+  opacity: 80%;
+}
+.puntaje {
+  position: absolute;
+  font-size: 1em;
+  right: 0px;
+  color: yellow;
+  background: rgba(0, 0, 0, 0.658);
+  border-radius: 1px;
+  padding-right: 4%;
+  padding-left: 4%;
 }
 </style>

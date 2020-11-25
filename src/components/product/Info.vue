@@ -12,6 +12,9 @@
             <h3 class="mt-2 mb-4">
               {{ product.productName }}
             </h3>
+            <div>
+              <Score :score="totalReview" />
+            </div>
             <p class="description text-justify mb-3">
               {{ product.description }}
             </p>
@@ -66,35 +69,35 @@
         </div>
       </b-col>
     </b-row>
-    <RecommendedItemList v-bind:product="product"/>
+    <RecommendedItemList v-bind:product="product" />
   </b-container>
 </template>
 
 <script>
 import axios from "axios";
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 import Vendedor from "./Vendedor";
-import {getAuthenticationToken} from '@/dataStorage';
+import Score from "./Score";
+import { getAuthenticationToken } from "@/dataStorage";
 import RecommendedItemList from "@/components/product/RecommendedItemList";
-
-
 
 export default {
   name: "Info",
   data() {
     return {
-      total_review: 1,
+      totalReview: 1,
       cantidad: 1,
-      state:true,
-      stateString:"",
-      mine:true,
+      state: true,
+      stateString: "",
+      mine: true,
       product: {
         description: "",
         stock: 0,
         price: 0,
         category: "",
         productName: "",
-        image: ""
+        image: "",
+        id: 0
       }
     };
   },
@@ -104,58 +107,58 @@ export default {
     let productId = this.$route.params.id;
 
     axios
-        .get(this.$store.state.backURL + postPath + productId, )
-        .then((response) => {
-          if (response.status !== 200) {
-            alert("Error en la peticion");
+      .get(this.$store.state.backURL + postPath + productId)
+      .then((response) => {
+        if (response.status !== 200) {
+          alert("Error en la peticion");
+        } else {
+          this.$set(this.product, "description", response.data.description);
+          this.$set(this.product, "id", response.data.id);
+          this.$set(this.product, "stock", response.data.stock);
+          this.$set(this.product, "price", response.data.price);
+          this.$set(this.product, "category", response.data.categoryId.name);
+          this.$set(this.product, "category_id", response.data.categoryId.id);
+          this.$set(this.product, "productName", response.data.productName);
+          this.$set(this.product, "image", response.data.image);
+          this.totalReview = response.data.totalReview;
+          this.state = response.data.state;
+          if (this.state) {
+            this.stateString = "Activo";
           } else {
-            this.$set(this.product,'description',response.data.description);
-            this.$set(this.product,'id',response.data.id);
-            this.$set(this.product,'stock',response.data.stock);
-            this.$set(this.product,'price',response.data.price);
-            this.$set(this.product,'category',response.data.categoryId.name);
-            this.$set(this.product,'category_id',response.data.categoryId.id);
-            this.$set(this.product,'productName',response.data.productName);
-            this.$set(this.product,'image',response.data.image);
-            this.state = response.data.state;
-            if(this.state){
-              this.stateString = "Activo";
-            }else{
-              this.stateString = "Inactivo";
-            }
-            this.mine = false;
-
+            this.stateString = "Inactivo";
           }
-        })
-        .catch((response) => {
-          console.log(response.status);
-          alert("No es posible conectar con el backend en este momento");
+          this.mine = false;
+        }
+      })
+      .catch((response) => {
+        console.log(response.status);
+        alert("No es posible conectar con el backend en este momento");
+      });
+  },
+  beforeUpdate() {
+    if (this.logged) {
+      const minePath = "/api/post/mine/";
+      axios
+        .get(
+          this.$store.state.backURL +
+            minePath +
+            this.$route.params.id +
+            "?access_token=" +
+            getAuthenticationToken()
+        )
+        .then((response) => {
+          if (response.status === 202) {
+            this.mine = true;
+          }
         });
-    },
-     beforeUpdate(){
-    if(this.logged){
-            const minePath = "/api/post/mine/";
-            axios
-              .get( this.$store.state.backURL + minePath + this.$route.params.id + "?access_token=" + getAuthenticationToken(),)
-              .then((response) => {
-                if( response.status === 202 ){
-                  this.mine = true;
-
-                }
-              });
-              
-          }
+    }
   },
 
   methods: {
     addCarrito(event) {
-      const path = "/add-carrito";
+      const path = "/api/shopping-cart/add";
       axios
-        .post(this.$store.state.backURL + path, {
-          productName: this.product.productName,
-          price: this.product.price,
-          stock: this.product.stock,
-        })
+        .post(this.$store.state.backURL + path + "?access_token=" + getAuthenticationToken() + "&postId=" + this.product.id + "&quantity=" + this.cantidad,)
         .then((response) => {
           if (response.status !== 201) {
             alert("Error en el almacenamiento del producto");
@@ -165,9 +168,7 @@ export default {
         })
         .catch((error) => {
           if (error.response.status === 400) {
-            alert(
-              'Parece que hubo un error'
-            );
+            alert("Parece que hubo un error");
           } else {
             console.log(error.message);
             alert("Error en la aplicación");
@@ -176,43 +177,48 @@ export default {
       event.preventDefault();
       return true;
     },
-    deletePost( event ){
-
+    deletePost(event) {
       const deletePath = "/api/post/delete/";
 
-      if(this.state === false){
-        alert( "Este producto ya esta deshabilitado !" )
-      }else{
+      if (this.state === false) {
+        alert("Este producto ya esta deshabilitado !");
+      } else {
         axios
-        .delete( this.$store.state.backURL + deletePath + this.$route.params.id + "?access_token=" + getAuthenticationToken(),)
-        .then( response => {
-          if( response.status === 200 ){
-            alert( "Post eliminado correctamente" )
-            this.$router.push( {name: 'home'} );
-          }else if(response.status === 202){
-            alert( "Post deshabilitado correctamente" )
-            this.$router.push( {name: 'home'} );
-          }else{
-            alert( "Parece que hubo un error" );
-          }
-        });
-      event.preventDefault();
-      return true;
+          .delete(
+            this.$store.state.backURL +
+              deletePath +
+              this.$route.params.id +
+              "?access_token=" +
+              getAuthenticationToken()
+          )
+          .then((response) => {
+            if (response.status === 200) {
+              alert("Post eliminado correctamente");
+              this.$router.push({ name: "home" });
+            } else if (response.status === 202) {
+              alert("Post deshabilitado correctamente");
+              this.$router.push({ name: "home" });
+            } else {
+              alert("Parece que hubo un error");
+            }
+          });
+        event.preventDefault();
+        return true;
       }
-    
     },
   },
-  computed:{
-      ...mapState(['logged']),
+  computed: {
+    ...mapState(["logged"]),
   },
   components: {
     Vendedor,
-    RecommendedItemList
+    Score,
+    RecommendedItemList,
   },
 };
 </script>
 
-<style>
+<style scoped>
 .cantidad {
   align-content: center;
 }
@@ -223,5 +229,12 @@ export default {
   margin-right: auto;
   max-width: 100%;
   height: auto;
+}
+.cuadro1 {
+  background: white;
+  min-width: 200px;
+}
+.cuadro2 {
+  background: white;
 }
 </style>
