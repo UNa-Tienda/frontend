@@ -272,10 +272,6 @@ export default({
     
     
     },  
-    logout() {
-      localStorage. removeItem("token-ingesoft");
-      this.logged = false;
-    },
   },
   computed:{
       ...mapState(['logged']),
