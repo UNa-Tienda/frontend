@@ -1,28 +1,28 @@
 <template>
   <div>
-      <h1 class="tusComprasTitulo my-4 ml-5 mb-5">Tus compras</h1>
-      <b-container class=" tusComprasInfo col-xs-12 col-sm-12 col-md-12 col-lg-8 border border-light rounded-lg">
-        <div class="col" v-for="post in postBought" :key="post.id">
+      <h1 class="tusPostTitulo my-4 ml-5 mb-5">Tus posts creados</h1>
+      <b-container class=" tusPostsInfo col-xs-12 col-sm-12 col-md-12 col-lg-8 border border-light rounded-lg">
+        <div class="col" v-for="post in postsCreated" :key="post.id">
           <div class="card mb-2" style="width: auto">
             <div class="row no-gutters">
               <div class="col-sm-5">
-                <router-link :to="{ name: 'product', params: { id: post.postId.id } }">
-                  <img
+                <router-link :to="{ name: 'product', params: { id: post.id } }">
+                    <img
                     class="imagenCarta card-img mt-2"
-                    v-bind:src="post.postId.image"
-                    v-bind:alt="post.postId.image"
+                    v-bind:src="post.image"
+                    v-bind:alt="post.image"
                     
-                  />
+                    
+                    />
                 </router-link>
               </div>
               <div class="col-sm-7">
                 <div class="card-body">
-                  <h5 class="card-title mb-5">Titulo del post : {{ post.postId.title }}</h5>
+                  <h5 class="card-title mb-5">Titulo del post : {{ post.title }}</h5>
                   <p class="card-text">
-                    Producto : {{ post.postId.productName }}<br />
-                    Cantidad : {{ post.postId.stock }}<br />
-                    Precio por unidad : {{ post.postId.price }}<br />
-                    Vendedor : {{ post.postId.sellerId.name}}<br />
+                    Producto : {{ post.productName }}<br />
+                    Cantidad : {{ post.stock }}<br />
+                    Precio por unidad : {{ post.price }}<br />
                   </p>
                 </div>
               </div>
@@ -37,20 +37,19 @@
 import axios from 'axios'
 import {getAuthenticationToken} from '@/dataStorage';
 
+
+  const path = '/api/post/my-posts';
+
   export default {
-    name: "ShoppingTable.vue",
+    name: "PostsTable.vue",
     data() {
     return {
-      postBought: [],
+      postsCreated: [],
     };
   },
   beforeCreate() {
-    const postPath = "/api/transactions/my-transactions";
     axios
-      .get(this.$store.state.backURL + postPath, {
-        headers: {
-          Authorization: `bearer ${getAuthenticationToken()}`,
-        },
+      .get(this.$store.state.backURL + path + "?access_token=" + getAuthenticationToken(), {
       })
       .then((response) => {
         if (response.status !== 200) {
@@ -58,7 +57,7 @@ import {getAuthenticationToken} from '@/dataStorage';
         } else {
           let postsResponse = response.data;
           postsResponse.forEach((post) => {
-            this.postBought.push(post);
+            this.postsCreated.push(post);
           });
         }
       })
@@ -71,11 +70,11 @@ import {getAuthenticationToken} from '@/dataStorage';
 </script>
 
 <style>
-
-.tusComprasInfo {
+.tusPostsInfo {
   justify-content: center;
   background-color: rgb(247, 247, 247);
   min-height: 60vh;
+
 }
 .imagenCarta{
   max-height: 238px;

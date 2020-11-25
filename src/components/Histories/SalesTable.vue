@@ -6,12 +6,14 @@
           <div class="card mb-2" style="width: auto">
             <div class="row no-gutters">
               <div class="col-sm-5">
-                <img
-                  class="imagenCarta card-img mt-2"
-                  v-bind:src="post.postId.image"
-                  v-bind:alt="post.postId.image"
-                  
-                />
+                <router-link :to="{ name: 'product', params: { id: post.postId.id } }">
+                  <img
+                    class="imagenCarta card-img mt-2"
+                    v-bind:src="post.postId.image"
+                    v-bind:alt="post.postId.image"
+                    
+                  />
+                </router-link>
               </div>
               <div class="col-sm-7">
                 <div class="card-body">
