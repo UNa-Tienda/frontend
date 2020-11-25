@@ -200,7 +200,7 @@ export default({
     return{
       lists:[]
     };
-
+  }, 
   beforeCreate() {
     this.$store.commit("initialiseLogged");
   },
@@ -286,6 +286,8 @@ export default({
         this.logged = true;
       }
     });
+  }
+})
 </script>
 
 <style scoped>
