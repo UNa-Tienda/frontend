@@ -20,9 +20,7 @@
           </b-row>
           <b-row class="mt-5">
             <b-col cols="auto" md="6" class="mb-5">
-              <div class="imgButton">
-                <b-form-file v-model="image" class="mt-3" plain></b-form-file>
-              </div>
+                <input accept=".png" class="mt-3" type="file" @change="onFileSelected"/>
             </b-col>
             <b-col cols=" xs-12 sm-12 auto" md="6">
               <b-form-group class="form-group col-12 mb-4">
@@ -81,7 +79,7 @@
                 v-model="category"
                 required
               >
-                <option value="" disabled selected
+                <option value="" 
                   >-- Seleccione una categoria --</option
                 >
                 <option
@@ -101,6 +99,7 @@
               variant="primary"
               >Publicar post
             </b-button>
+            
           </div>
         </b-form>
       </div>
@@ -150,11 +149,13 @@ const path = "/api/post/add/";
 
     methods:{
       createPost( event ){
+        if(this.image === null){
+          alert( "Por favor suba una imagen" )
+        }else{
         axios
           .post( this.$store.state.backURL + path + this.category +  "?access_token=" + getAuthenticationToken(),
             { 
               
-              image: "Nada",
               title: this.title.trim( ),
               productName: this.product_name.trim( ),
               description: this.description.trim( ),
@@ -184,7 +185,29 @@ const path = "/api/post/add/";
           });
         event.preventDefault( );
         return true;
-      }
+        }
+      },
+      onFileSelected(event){
+      this.image = event.target.files[0]
+
+        var formData = new FormData();
+        // append Blob/File object
+        formData.append('file', this.image, 'image.png');
+
+        // POST /someUrl
+        const photo = '/api/post/add-image';
+ 
+        axios
+          .post( this.$store.state.backURL + photo,formData,
+          ).then( response => {
+              response.preventDefault();
+          }).catch( error =>{
+              error.preventDefault();
+          });
+      
+
+      },
+
     },
   components: {
     TopMenu,
